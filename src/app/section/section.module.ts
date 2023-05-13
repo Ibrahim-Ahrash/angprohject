@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { NbActionsModule, NbContextMenuModule, NbLayoutModule, NbMenuModule, NbUserModule } from '@nebular/theme';
+import { NbMenuModule, NbLayoutModule, NbActionsModule, NbUserModule, NbContextMenuModule } from '@nebular/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
@@ -15,12 +15,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   imports: [
     CommonModule,
+    FontAwesomeModule,
+    NbMenuModule,
     NbLayoutModule,
     NbActionsModule,
     NbUserModule,
-    FontAwesomeModule,
-    NbContextMenuModule,
-    NbMenuModule
+    NbContextMenuModule
 
   ],
   exports: [

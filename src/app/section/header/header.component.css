@@ -2,13 +2,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 195vh;
+  padding: 5px;
 }
+
 .user-actions {
   padding: 10px;
-
   margin-top: 20px;
   font-weight: 800;
 }
+
 .icon {
   padding: 10px;
   width: 60px;
@@ -20,17 +23,19 @@
 .project-log-title {
   display: flex;
   justify-content: space-between;
-  width: 199px;
+  width: 190px;
+  margin-top: 5px;
 }
 
 .project-log-title h3 {
-  font-size: revert;
-  margin-top: 40px;
+  font-size: small;
+  margin-top: 33px;
   margin-left: 20px;
   font-weight: 900;
 }
+
 .project-log-title img {
-  margin: 30px 20px 0 0;
+  margin: 30px 20px 10px 0;
   width: 40px;
   height: 50px;
 }
