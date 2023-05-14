@@ -1,1 +1,61 @@
-<p>filter-services works!</p>
+<nb-card class="card-filter">
+  <nb-card-header class="card-header"> فلتر البحث </nb-card-header>
+  <nb-card-body>
+    <form id="filterForm" #filterform="ngForm" (submit)="OnFilterSubmit()">
+      <div class="row">
+        <div class="col">
+          <div class="feild-filter">
+            <h3>التاريخ</h3>
+            <select class="form-control input-sm" [(ngModel)]="FilterObject.DateType" name="DateType">
+              <option value="1">تاريخ الإضافة</option>
+              <option value="2">تاريخ طلب الخدمة</option>
+              <option value="3">تاريخ إدخال التقرير</option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="feild-filter">
+            <h3>المدة</h3>
+            <select class="form-control input-sm" [(ngModel)]="FilterObject.Duration" name="Duration">
+              <option value="1">اليوم</option>
+              <option value="2">قبل أسبوع</option>
+              <option value="3">قبل 10 أيام</option>
+              <option value="4">قبل شهر</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="feild-filter">
+            <h3>الفرع</h3>
+
+            <select name="RefBranchID" [(ngModel)]="FilterObject.RefBranchID" class="form-control input-sm">
+              <option value="null">الكل</option>
+              <option *ngFor="let b of branch" value="{{b.BranchID_PK}}">{{b.BranchName}}</option>
+
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="feild-filter">
+            <h3>الحالة</h3>
+            <select name="ServiceStatusID" class="form-control input-sm">
+              [(ngModel)]="FilterObject.ServiceStatusID"
+              <option value="null">الكل</option>
+              <option value="10">قيد الانتظار</option>
+              <option value="20">تم التكليف</option>
+              <option value="30">قيد الانجاز</option>
+              <option value="40">تم الانجاز</option>
+              <option value="50">مغلقة</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="button" form="filterForm" nbButton type="submit" status="success">بحث</button>
+  </nb-card-footer>
+</nb-card>

@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="box">
+    <div class="left">
+      <div class="logo">
+        <img src="../../assets/imgs/logo.png">
+      </div>
+      <h2>Welcome Back!</h2>
+      <span>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
+        modi nulla, ea animi
+      </span>
+
+      <form (ngSubmit)="onSubmit()">
+
+        <div class="userInput">
+
+          <label for="email:">Username</label><br>
+          <fa-icon class="icon" [icon]="usericon"></fa-icon>
+          <input #username="ngModel" type="text" name="username" id="Username" [(ngModel)]="LogInObject.Username"
+            class="form-control">
+
+        </div>
+        <div class="userInput">
+          <label label for="Password">Password</label><br>
+          <fa-icon class="icon" [icon]="passicon"></fa-icon>
+
+          <input #password="ngModel" type="password:" name="password" id="Password" class="form-control"
+            [(ngModel)]="LogInObject.Password">
+        </div>
+        <div class="butt">
+          <!-- <button type="button" class="">Login</button> -->
+          <input class="btn btn-primary btn-lg btn-block" type="submit" value="Submit input">
+        </div>
+      </form>
+    </div>
+    <div class="right">
+      <img src="../../assets/imgs/auth-bg.png" alt="image">
+    </div>
+  </div>
+</div>

@@ -3,15 +3,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './section/header/header.component';
 import { HomeComponent } from './home/home.component';
 import { ServicesListComponent } from './services/services-list/services-list.component';
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
   {
-    path: '', component: HomeComponent
+    path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full'
   },
   {
-    path: 'sections', component: HeaderComponent
+    path: 'auth',
+    loadChildren: () => import("./auth/login/auth.module").then(m => m.AuthModule)
   },
-
+  {
+    path: 'home',
+    loadChildren: () => import("./home/home.module").then(m => m.HomeModule)
+  }
 ];
 
 @NgModule({

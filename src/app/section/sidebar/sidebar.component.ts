@@ -11,7 +11,8 @@ export class SidebarComponent {
 
   items: NbMenuItem[] = [
     {
-      title: 'الخدمات'
+      title: 'الخدمات',
+      link: '/home/services'
     },
     {
       title: 'الشركات واالفروع',

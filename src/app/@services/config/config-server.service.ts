@@ -24,7 +24,8 @@ export class ConfigServerService {
 
   getAPILink() {
 
-    return this.appCofig.API_IP;
+    // return this.appCofig.API_IP;
+    return "http://135.181.133.173:2023/v1"
   }
 
 }

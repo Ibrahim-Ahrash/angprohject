@@ -1,1 +1,100 @@
 <p>create-services works!</p>
+<nb-card class="card-filter">
+  <nb-card-header class="card-header">
+    إضافة خدمة
+  </nb-card-header>
+  <nb-card-body>
+    <form id="ServiceForm" [formGroup]="ServiceForm">
+      <div class="row">
+        <div class="col">
+          <div class="feild-filter">
+            <h3>الفرع</h3>
+            <input #branch autocomplete="off" dir="rtl" (keyup)="onKeyPress($event)" type="text" class="form-control"
+              name="customer" (blur)="HideSearchResult()">
+            <div *ngIf="ShowResultMenu" class="search-result">
+              <ul class="menu">
+                <li *ngFor="let c  of Customers" (click)="SaveCustomerData(c, branch)">{{c.Name}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="feild-filter">
+            <h3>رقم الهاتف</h3>
+            <input
+              [class.invalid]="ServiceForm.get('ApplicantPhoneNumber').invalid && ServiceForm.get('ApplicantPhoneNumber').touched"
+              formControlName="ApplicantPhoneNumber" class="form-control" type="text">
+            <small
+              *ngIf="ServiceForm.get('ApplicantPhoneNumber').invalid && ServiceForm.get('ApplicantPhoneNumber').touched"
+              class="text-danger text-end d-block w-100">
+              {{
+              ServiceForm.get('ApplicantPhoneNumber').errors?.['PhoneError']
+              }}
+            </small>
+          </div>
+        </div>
+        <div class="col">
+          <div class="feild-filter">
+            <h3>المندوب</h3>
+            <input
+              [class.invalid]="ServiceForm.get('ApplicantName').invalid && ServiceForm.get('ApplicantName').touched"
+              formControlName="ApplicantName" class="form-control" type="text">
+            <small *ngIf="ServiceForm.get('ApplicantName').invalid && ServiceForm.get('ApplicantName').touched"
+              class="text-danger text-end d-block w-100">
+              هذا الحقل إجبارى
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="feild-filter">
+            <h3>نوع الخدمة</h3>
+            <select [class.invalid]="ServiceForm.get('ServiceID_FK').invalid && ServiceForm.get('ServiceID_FK').touched"
+              formControlName="ServiceID_FK" class="form-control input-sm">
+              <option value="0">اختر واحدة</option>
+              <option *ngFor="let s of ServicesModule" [value]="s.ServiceID_PK">{{s.ServiceCaption}}</option>
+
+            </select>
+            <small *ngIf="ServiceForm.get('ServiceID_FK').invalid && ServiceForm.get('ServiceID_FK').touched"
+              class="text-danger text-end d-block w-100">
+              {{
+              ServiceForm.get('ServiceID_FK').errors?.['SelectError']
+              }}
+            </small>
+          </div>
+        </div>
+        <div class="col">
+          <div class="feild-filter">
+            <h3>تاريخ الطلب</h3>
+            <input [class.invalid]="ServiceForm.get('RequiredDate').invalid && ServiceForm.get('RequiredDate').touched"
+              formControlName="RequiredDate" class="form-control" type="date">
+            <small *ngIf="ServiceForm.get('RequiredDate').invalid && ServiceForm.get('RequiredDate').touched"
+              class="text-danger text-end d-block w-100">
+              هذا الحقل إجبارى
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="feild-filter">
+            <h3>ملاحظة</h3>
+            <textarea placeholder="(إختيارى)" class="form-control text-end"></textarea>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </nb-card-body>
+  <nb-card-footer>
+    <nb-card-footer>
+      <button form="ServiceForm" nbButton type="submit" status="success" (click)="onSubmit()">إضافة</button>
+      <button nbButton (click)="close()" type="button" class="ms-2" status="danger">إغلاق</button>
+    </nb-card-footer>
+  </nb-card-footer>
+</nb-card>

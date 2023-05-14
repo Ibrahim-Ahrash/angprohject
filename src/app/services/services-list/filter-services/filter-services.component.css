@@ -1,0 +1,35 @@
+.card-filter {
+  width: 600px;
+}
+
+.card-header {
+  background-color: #006fd6;
+  color: white;
+  text-align: right;
+  padding: 5px;
+}
+
+.feild-filter h3 {
+  font-size: 12px;
+  text-align: right;
+}
+
+.row {
+  margin-top: 10px;
+}
+
+.form-control {
+  height: 38px;
+  font-size: 14px;
+  padding: 3px;
+  direction: rtl;
+}
+
+.button {
+  background-color: #00d68f;
+  color: white;
+  border: none;
+  width: 80px;
+  padding: 5px;
+  margin-left: 30px;
+}

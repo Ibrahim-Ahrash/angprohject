@@ -1,0 +1,24 @@
+<nb-card class="mainCard">
+  <nb-card-header class="cardHead">
+    <div class="left">
+
+      <nb-action nbPopover="حذف الخدمة" nbPopoverTrigger="hover" nbPopoverPlacement="bottom">
+        <fa-icon class="leftIcont" [icon]="trash"></fa-icon>
+      </nb-action>
+      <nb-action nbPopover="فلتر بحث" nbPopoverTrigger="hover" nbPopoverPlacement="bottom">
+        <fa-icon class="leftIconf" [icon]="filt"></fa-icon>
+      </nb-action>
+      <nb-action nbPopover="إضافة خدمة" nbPopoverTrigger="hover" nbPopoverPlacement="bottom">
+        <fa-icon class="leftIconp" [icon]="plus"></fa-icon>
+      </nb-action>
+
+    </div>
+
+    <div class="right">
+
+      <fa-icon class="rtIcon" [icon]="searc"></fa-icon>
+      <input nbInput type="text" fieldsize="small">
+
+    </div>
+  </nb-card-header>
+</nb-card>

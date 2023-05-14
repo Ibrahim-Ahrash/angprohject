@@ -1,0 +1,97 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  width: 800px;
+  height: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid silver;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+  text-align: center;
+  margin-top: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: blue;
+  font-size: medium;
+}
+
+span {
+  display: block;
+  /* padding-left: 5%; */
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+form {
+  position: relative;
+}
+
+label {
+  padding: 5px;
+  font-weight: bolder;
+}
+
+.icon {
+  color: #3f51b5;
+  position: absolute;
+  margin: 5px 5px 0 10px;
+}
+
+.userInput {
+  padding: 5px 10px 10px 30px;
+}
+
+input {
+  border: none;
+  padding: 5px;
+  border-radius: 10px;
+  width: 100%;
+  border: 1px solid silver;
+}
+
+/*
+.right{
+  background-image: url(../../assets/imgs/auth-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 5px;
+} */
+.right img {
+  display: block;
+  width: 100%;
+  height: 79%;
+  padding: 10px;
+}
+
+.butt {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.butt input {
+  width: 90%;
+  padding: 10px;
+  margin: 5px -10px 0 5px;
+}
+
+.form-control {
+  padding-left: 30px;
+}

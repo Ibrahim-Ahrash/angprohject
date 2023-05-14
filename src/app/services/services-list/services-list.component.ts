@@ -2,17 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
-import { ColDef, ColGroupDef } from 'ag-grid-community';
+import { ColDef, ColGroupDef, GridApi } from 'ag-grid-community';
 import { ServicesService } from 'src/app/@services/services.service';
 import { faFilter, faPlus, faTrash, faUsers } from '@fortawesome/free-solid-svg-icons'
-import { AgGridAngular } from 'ag-grid-angular';
+import { ServicesListModule } from './services-list.module';
+import { CreateServicesComponent } from './create-services/create-services.component';
+import { FilterServicesComponent } from './filter-services/filter-services.component';
+
 @Component({
   selector: 'app-services-list',
   templateUrl: './services-list.component.html',
   styleUrls: ['./services-list.component.css']
 })
 export class ServicesListComponent {
-  colDefs: (ColDef<any> | ColGroupDef<any>)[];
   constructor(
     private http: HttpClient,
     private services: ServicesService,
@@ -20,16 +22,14 @@ export class ServicesListComponent {
     private toaster: NbToastrService,
     private router: Router
   ) { }
-
+  private gridApi: GridApi;
+  private gridColumnApi: any;
+  rowData = [];
 
   filt = faFilter;
   plus = faPlus;
   trash = faTrash;
   user = faUsers;
-  private gridApi: any;
-  private gridColumnApi: any;
-
-  rowData = [];
 
   defaultColDef = {
 
@@ -37,7 +37,6 @@ export class ServicesListComponent {
     flex: 1,
     sortable: true
   };
-
 
   FilterObject = {
     IsRange: false,
@@ -49,7 +48,8 @@ export class ServicesListComponent {
     ServiceStatusID: null,
     UserID: '',
     UserType: 1,
-  }
+  };
+
 
   ngOnInit(): void {
 
@@ -79,32 +79,32 @@ export class ServicesListComponent {
 
   OpenFilter() {
 
-    // this.diag.open(ServiceFilterComponent, {
-    //   hasBackdrop: true,
-    //   closeOnEsc: true,
-    //   closeOnBackdropClick: true,
-    //   context: {
-    //     FilterObject: this.FilterObject
-    //   }
-    // }).onClose.subscribe({
-    //   next: (filterResult) => {
-    //     this.FilterObject = filterResult;
-    //     this.getServiceList();
-    //   }
-    // });
+    this.diag.open(FilterServicesComponent, {
+      hasBackdrop: true,
+      closeOnEsc: true,
+      closeOnBackdropClick: true,
+      context: {
+        FilterObject: this.FilterObject
+      }
+    }).onClose.subscribe({
+      next: (filterResult) => {
+        this.FilterObject = filterResult;
+        this.getServiceList();
+      }
+    });
   }
 
   CreateNewServices() {
 
-    // this.diag.open(CreateServicesComponent).onClose
-    //   .subscribe({
-    //     next: (res) => {
+    this.diag.open(CreateServicesComponent).onClose
+      .subscribe({
+        next: (res) => {
 
-    //       if (!res) return;
+          if (!res) return;
 
-    //       this.getServiceList();
-    //     }
-    //   })
+          this.getServiceList();
+        }
+      })
   }
 
   ConfermDelete() {

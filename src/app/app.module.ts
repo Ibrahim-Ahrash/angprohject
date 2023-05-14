@@ -1,18 +1,21 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NbSidebarModule, NbLayoutModule, NbButtonModule, NbThemeModule, NbActionsModule, NbUserModule, NbContextMenuModule, NbMenuModule, NbDialogModule, NbToastrModule } from '@nebular/theme';
-import { HomeComponent } from './home/home.component';
 import { AgGridModule } from 'ag-grid-angular'
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SectionModule } from './section/section.module';
+import { LoginComponent } from './auth/login/login.component';
+import { FormsModule } from '@angular/forms';
+import { TokenIntrsiptService } from './@services/token-intrsipt.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CompanyComponent } from './company/company/company.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -30,10 +33,19 @@ import { SectionModule } from './section/section.module';
     HttpClientModule,
     NbDialogModule.forRoot(),
     NbToastrModule.forRoot(),
-    SectionModule
+    SectionModule,
+    FormsModule,
+    BrowserAnimationsModule
 
   ],
-  providers: [],
+  providers: [
+
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenIntrsiptService,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,67 @@
+.card-filter {
+  width: 600px;
+}
+
+.card-header {
+  background-color: #006fd6;
+  color: white;
+  text-align: right;
+  padding: 5px;
+}
+
+.feild-filter h3 {
+  font-size: 12px;
+  text-align: right;
+}
+
+.row {
+  margin-top: 10px;
+}
+
+.form-control {
+  height: 38px;
+  font-size: 14px;
+  padding: 3px;
+  direction: rtl;
+}
+
+.button {
+  background-color: #00d68f;
+  color: white;
+  border: none;
+  width: 80px;
+  padding: 5px;
+  margin-left: 30px;
+}
+
+.menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.menu li {
+  padding: 5px 20px;
+  text-align: right;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  user-select: none;
+}
+
+.menu li:hover {
+  background-color: #eee;
+}
+
+.search-result {
+  background-color: #fff;
+  position: absolute;
+  top: 83px;
+  left: 0;
+  right: 0;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  z-index: 999;
+  border-radius: 5px;
+  padding: 10px;
+  height: 150px;
+  overflow: overlay;
+}

@@ -21,8 +21,10 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.scss",
-              "node_modules/@nebular/theme/styles/prebuilt/default.css"
+              "node_modules/@nebular/theme/styles/prebuilt/default.css",
+              "node_modules/bootstrap/scss/bootstrap.scss"
             ],
+
             "scripts": []
           },
           "configurations": {

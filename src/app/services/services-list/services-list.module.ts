@@ -7,8 +7,9 @@ import { FilterServicesComponent } from './filter-services/filter-services.compo
 import { ServicesListComponent } from './services-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AgGridModule } from 'ag-grid-angular';
+import { ReactiveFormsModule } from '@angular/forms';
 
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,8 +26,14 @@ import { AgGridModule } from 'ag-grid-angular';
     NbCardModule,
     NbPopoverModule,
     FontAwesomeModule,
-    AgGridModule
-  ]
+    AgGridModule,
+    ReactiveFormsModule,
+    FormsModule
+
+
+  ],
+
+  exports: [ServicesListComponent]
 })
 export class ServicesListModule {
 
