@@ -5,7 +5,7 @@
       <nb-action nbPopover="حذف الخدمة" nbPopoverTrigger="hover" nbPopoverPlacement="bottom">
         <fa-icon class="leftIcont" [icon]="trash"></fa-icon>
       </nb-action>
-      <nb-action nbPopover="فلتر بحث" nbPopoverTrigger="hover" nbPopoverPlacement="bottom">
+      <nb-action nbPopover="فلتر بحث" nbPopoverTrigger="hover" nbPopoverPlacement="bottom" (click)="OpenFilter()">
         <fa-icon class="leftIconf" [icon]="filt"></fa-icon>
       </nb-action>
       <nb-action nbPopover="إضافة خدمة" nbPopoverTrigger="hover" nbPopoverPlacement="bottom">
@@ -21,4 +21,12 @@
 
     </div>
   </nb-card-header>
+  <nb-card-body>
+    <ag-grid-angular #agGrid id="agGrid" class="ag-theme-alpine text-end customer-list-grid"
+      style="height: 500px; width: 100%; " [rowData]="rowData" [overlayNoRowsTemplate]="'لا يوجد خدمات لعرضها'"
+      [columnDefs]="colDef" [rowSelection]="'single'" [headerHeight]="35" [rowHeight]="35"
+      [defaultColDef]="defaultColDef"></ag-grid-angular>
+
+
+  </nb-card-body>
 </nb-card>

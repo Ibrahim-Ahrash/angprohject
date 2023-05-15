@@ -23,7 +23,7 @@ export class SidebarComponent {
         },
         {
           title: "الشركات",
-          link: '/custmers'
+          link: '/home/company/company-list'
         }
       ]
 

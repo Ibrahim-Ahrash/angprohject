@@ -7,11 +7,10 @@ import { NbSidebarModule, NbLayoutModule, NbButtonModule, NbThemeModule, NbActio
 import { AgGridModule } from 'ag-grid-angular'
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SectionModule } from './section/section.module';
-import { LoginComponent } from './auth/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { TokenIntrsiptService } from './@services/token-intrsipt.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CompanyComponent } from './company/company/company.component';
+
 
 @NgModule({
   declarations: [
