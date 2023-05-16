@@ -1,5 +1,49 @@
-<nb-card>
-  <nb-card-header>
+<nb-card class="card-filter">
+  <nb-card-header class="card-header">
     فلتر
   </nb-card-header>
+  <nb-card-body>
+    <form class="form-control">
+      <div class="row">
+        <div class="col">
+          <div class="field">
+            <h3> المدينة </h3>
+            <select name="city" id="city" class="form-control">
+              <option value="0">اختر واحدة</option>
+              <option value="1" *ngFor="let v of cities">{{v.Name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="field">
+            <h3> نوع النشاط </h3>
+            <select name="activity" id="activitie" class="form-control">
+              <option value="0">اختر واحدة</option>
+              <option value="1" *ngFor="let v of activitie">{{v.Caption}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="field">
+            <h3> النظام </h3>
+            <select name="system" id="system" class="form-control">
+              <option value="0">اختر واحدة</option>
+              <option value="1" *ngFor="let v of system">{{v.SystemName}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="field">
+            <h3> المنتج </h3>
+            <select name="product" id="product" class="form-control">
+              <option value="0">اختر واحدة</option>
+              <option value="1" *ngFor="let v of product">{{v.ProductCateoryName}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
 </nb-card>
