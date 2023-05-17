@@ -7,7 +7,7 @@
   background-color: #ffff;
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 5px;
 }
 
 .leftIcon {
@@ -29,13 +29,15 @@
 }
 
 .right h2 {
-  font-size: revert;
+  font-size: 20px;
   padding: 5px;
+
 }
 
 .right .icon {
   color: #006fd6;
   margin: 10px 5px 0 0;
 }
+
 
 /* @import "~bootstrap/dist/css/bootstrap.css"; */

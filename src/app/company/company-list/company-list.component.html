@@ -2,7 +2,7 @@
   <nb-card-header class="cardHead">
     <div class="left">
 
-      <nb-action nbPopover="حذف الخدمة" nbPopoverTrigger="hover" nbPopoverPlacement="bottom">
+      <nb-action nbPopover="حذف الخدمة" nbPopoverTrigger="hover" nbPopoverPlacement="bottom" (click)="confirmDelet()">
         <fa-icon class="leftIcont" [icon]="trash"></fa-icon>
       </nb-action>
       <nb-action nbPopover="فلتر بحث" nbPopoverTrigger="hover" nbPopoverPlacement="bottom" (click)="OpenFilter()">
@@ -15,17 +15,18 @@
     </div>
 
     <div class="right">
+      <button class="me-2" (click)="search()" nbButton size="small" status="primary">
+        <fa-icon class="rtIcon" [icon]="searc"></fa-icon></button>
 
-      <fa-icon class="rtIcon" [icon]="searc"></fa-icon>
-      <input nbInput type="text" fieldsize="small">
+      <input [(ngModel)]="searchvalue.SearchValue" nbInput type="text" fieldsize="small">
 
     </div>
   </nb-card-header>
   <nb-card-body>
-    <ag-grid-angular #agGrid id="agGrid" class="ag-theme-alpine text-end customer-list-grid"
+    <ag-grid-angular #agGrid id="agGrid" class="ag-theme-alpine text-end customer-list-grid" [rowSelection]="'single'"
       style="height: 500px; width: 100%; " [rowData]="rowData" [overlayNoRowsTemplate]="'لا يوجد خدمات لعرضها'"
       [columnDefs]="colDef" [rowSelection]="'single'" [headerHeight]="35" [rowHeight]="35"
-      [defaultColDef]="defaultColDef"></ag-grid-angular>
+      [defaultColDef]="defaultColDef" (gridReady)="onGridReady($event)"></ag-grid-angular>
 
 
   </nb-card-body>

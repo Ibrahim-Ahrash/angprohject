@@ -1,14 +1,14 @@
 <nb-card class="card-filter">
-  <nb-card-header class="card-header">
+  <nb-card-header class="card-header p-1">
     فلتر
   </nb-card-header>
-  <nb-card-body>
-    <form class="form-control">
+  <nb-card-body class="card-filter">
+    <form id="filter" [formGroup]="filter" class="form-control formm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col">
           <div class="field">
             <h3> المدينة </h3>
-            <select name="city" id="city" class="form-control">
+            <select formControlName="CityID" name="city" id="city" class="form-control">
               <option value="0">اختر واحدة</option>
               <option value="1" *ngFor="let v of cities">{{v.Name}}</option>
             </select>
@@ -17,7 +17,7 @@
         <div class="col">
           <div class="field">
             <h3> نوع النشاط </h3>
-            <select name="activity" id="activitie" class="form-control">
+            <select formControlName="ProductID" name="activity" id="activitie" class="form-control">
               <option value="0">اختر واحدة</option>
               <option value="1" *ngFor="let v of activitie">{{v.Caption}}</option>
             </select>
@@ -28,7 +28,7 @@
         <div class="col">
           <div class="field">
             <h3> النظام </h3>
-            <select name="system" id="system" class="form-control">
+            <select formControlName="SystemModuleID" name="system" id="system" class="form-control">
               <option value="0">اختر واحدة</option>
               <option value="1" *ngFor="let v of system">{{v.SystemName}}</option>
             </select>
@@ -37,7 +37,7 @@
         <div class="col">
           <div class="field">
             <h3> المنتج </h3>
-            <select name="product" id="product" class="form-control">
+            <select formControlName="ProductID" name="product" id="product" class="form-control">
               <option value="0">اختر واحدة</option>
               <option value="1" *ngFor="let v of product">{{v.ProductCateoryName}}</option>
             </select>
@@ -46,4 +46,9 @@
       </div>
     </form>
   </nb-card-body>
+  <nb-card-footer class="pads">
+    <button form="filter" nbButton status="success">بحث</button>
+    <button nbButton status="danger" (click)="close()" class="m-3">اغلاق</button>
+
+  </nb-card-footer>
 </nb-card>

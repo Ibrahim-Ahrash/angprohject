@@ -19,7 +19,8 @@ export class SidebarComponent {
       expanded: true,
       children: [
         {
-          title: "إضافة شركة"
+          title: "إضافة شركة",
+          link: '/home/company/add-company'
         },
         {
           title: "الشركات",

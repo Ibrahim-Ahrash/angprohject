@@ -1,9 +1,10 @@
 import { ColDef } from 'ag-grid-community';
 import { Component } from '@angular/core';
 import { faFilter, faPlus, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { NbDialogService, NbToastrService } from '@nebular/theme';
+import { NbDialogService } from '@nebular/theme';
 import { FilterCompanyComponent } from './filter-company/filter-company.component';
-
+import { ServicesService } from 'src/app/@services/services.service';
+import { GridApi } from 'ag-grid-community';
 @Component({
   selector: 'app-company-list',
   templateUrl: './company-list.component.html',
@@ -12,7 +13,7 @@ import { FilterCompanyComponent } from './filter-company/filter-company.componen
 export class CompanyListComponent {
   constructor(
     private diag: NbDialogService,
-    private toaster: NbToastrService,
+    private company: ServicesService
   ) { }
 
   filt = faFilter;
@@ -26,8 +27,8 @@ export class CompanyListComponent {
   searchvalue = {
     SearchValue: ""
   };
-  private gridApi: any;
-  private gridColumnApi: any;
+  private gridApi: GridApi;
+  private gridColumnApi: GridApi;
   defaultColDef = {
 
     resizable: true,
@@ -38,6 +39,17 @@ export class CompanyListComponent {
 
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+  }
+  search() {
+
+    this.company.getCustomersBySerach(this.searchvalue)
+      .subscribe({
+        next: (res) => {
+          console.log(res)
+          this.rowData = res.JsonArray
+        }
+
+      })
   }
   colDef: ColDef[] = [
 
@@ -91,6 +103,13 @@ export class CompanyListComponent {
   }
 
   confirmDelet() {
-    console.log("deleted");
+    const selectedData = this.gridApi.getSelectedRows();
+    console.log(selectedData);
+    this.company.DeleteCustomers(selectedData[0].BranchID_PK)
+      .subscribe({
+        next: (res) => {
+          console.log(res)
+        }
+      })
   }
 }

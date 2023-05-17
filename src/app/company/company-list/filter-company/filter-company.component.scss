@@ -1,12 +1,12 @@
 .card-filter {
-
   width: 500px;
   border: none;
 
   nb-card-header {
-    background-color: var(--color-primary-600);
+    background-color: #274bdb;
     text-align: right;
     color: #FFF;
+    font-size: 20px;
   }
 
   h3 {
@@ -16,4 +16,13 @@
     width: 100%;
     text-align: right;
   }
+}
+
+.formm {
+  border: none;
+}
+
+.pads {
+
+  padding: 0.5rem 1.5rem;
 }
