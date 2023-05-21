@@ -2,10 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faUser } from '@fortawesome/free-regular-svg-icons'
-import { faLock } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faEye } from '@fortawesome/free-regular-svg-icons'
+import { faLock, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { AuthService } from 'src/app/@services/auth/auth.service';
-
 
 @Component({
   selector: 'app-login',
@@ -17,10 +16,11 @@ export class LoginComponent {
     private login: AuthService,
     private router: Router
   ) { }
-
+  viewPassword: boolean = true
   usericon = faUser;
   passicon = faLock;
-
+  eye = faEye;
+  noteye = faEyeSlash
 
   ViewPassword = false;
 

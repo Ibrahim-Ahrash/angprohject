@@ -1,0 +1,141 @@
+.page-body {
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  width: 100%;
+  height: 75px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.logo img {
+  width: 48px;
+  height: 48px;
+  margin-right: 80px;
+}
+
+.sideheader a {
+  margin: 5px;
+  padding: 5px;
+}
+
+.section {
+  background-color: #f7f7f7;
+  height: calc(100% - 75px);
+  display: flex;
+  justify-content: center;
+}
+
+.main {
+  background: url('../../assets//imgs/bg-benefits.png');
+  background-position: 0 88%;
+  background-repeat: no-repeat;
+  height: 100%;
+  position: relative;
+}
+
+
+
+
+.box {
+  height: 600px;
+  width: 393px;
+  padding: 24px;
+  background-color: #ffff;
+  margin: 41px 200px 120px 163px;
+  border-radius: 4px;
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, .12);
+
+}
+
+.content {
+  display: flex;
+
+}
+
+.logo2 {
+  flex: 0 0 16.66667%;
+
+}
+
+.dash h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #35405A;
+  font-size: 16px;
+}
+
+.dash p {
+  margin: 8px 0 16px;
+  color: #212529;
+  font-size: 15px;
+  border-bottom: 1px solid silver;
+}
+
+.right {
+
+  width: 400px;
+}
+
+.mainr {
+  margin-top: 100px;
+}
+
+.headerlogo {
+  padding: 15px;
+  margin-left: 5px;
+}
+
+.headerlogo p {
+  margin-top: 20px;
+}
+
+
+form {
+  background-color: #f7f7f7;
+}
+
+form input {
+  padding: 10px;
+  margin: 5px 0 10px 5px;
+}
+
+form button {
+  width: 100%;
+  padding: 10px;
+
+  margin: 15px 5px 15px 5px;
+}
+
+.butform {
+  margin-left: 20px;
+}
+
+.iconeye {
+  position: absolute;
+  top: 435px;
+  left: 78.4%;
+  color: #923fb5;
+}
+
+small {
+  color: #F00;
+  margin: 0 0 15px 5px;
+}
+
+.secsmall {
+  display: block;
+  margin: 5px 0 0 0;
+  font-weight: bolder;
+  text-align: right;
+}
+
+.opt {
+  margin-top: 28px !important;
+}

@@ -15,7 +15,7 @@ export class SidebarComponent {
       link: '/home/services'
     },
     {
-      title: 'الشركات واالفروع',
+      title: 'الشركات والفروع',
       expanded: true,
       children: [
         {

@@ -8,9 +8,10 @@
       <nb-action nbPopover="فلتر بحث" nbPopoverTrigger="hover" nbPopoverPlacement="bottom" (click)="OpenFilter()">
         <fa-icon class="leftIconf" [icon]="filt"></fa-icon>
       </nb-action>
-      <nb-action nbPopover="إضافة خدمة" nbPopoverTrigger="hover" nbPopoverPlacement="bottom">
+      <nb-action nbPopover="إضافة خدمة" nbPopoverTrigger="hover" nbPopoverPlacement="bottom" (click)="getget()">
         <fa-icon class="leftIconp" [icon]="plus"></fa-icon>
       </nb-action>
+
 
     </div>
 
@@ -18,13 +19,15 @@
       <button class="me-2" (click)="search()" nbButton size="small" status="primary">
         <fa-icon class="rtIcon" [icon]="searc"></fa-icon></button>
 
-      <input [(ngModel)]="searchvalue.SearchValue" nbInput type="text" fieldsize="small">
+      <input [(ngModel)]="searchvalue.SearchValue"
+        class="size-small status-basic shape-rectangle ng-valid nb-transition ng-dirty ng-touched" nbInput type="text"
+        fieldsize="small" (keyup.enter)="search()">
 
     </div>
   </nb-card-header>
   <nb-card-body>
     <ag-grid-angular #agGrid id="agGrid" class="ag-theme-alpine text-end customer-list-grid" [rowSelection]="'single'"
-      style="height: 500px; width: 100%; " [rowData]="rowData" [overlayNoRowsTemplate]="'لا يوجد خدمات لعرضها'"
+      style="height: 100%; width: 100%; " [rowData]="rowData" [overlayNoRowsTemplate]="'لا يوجد خدمات لعرضها'"
       [columnDefs]="colDef" [rowSelection]="'single'" [headerHeight]="35" [rowHeight]="35"
       [defaultColDef]="defaultColDef" (gridReady)="onGridReady($event)"></ag-grid-angular>
 

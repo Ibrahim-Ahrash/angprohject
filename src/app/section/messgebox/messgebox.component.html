@@ -1,0 +1,12 @@
+<nb-card class="card-filter">
+  <nb-card-header class="card-header p-1">
+    تأكيد العملية
+  </nb-card-header>
+  <nb-card-body class="card-body">
+    هل أنت متأكد من عملية الحذف ؟
+  </nb-card-body>
+  <nb-card-footer class="card-footer">
+    <button nbButton (click)="close(true)" size="small" status="primary">نعم</button>
+    <button nbButton (click)="close(false)" class="ms-2" status="danger" size="small">لا</button>
+  </nb-card-footer>
+</nb-card>

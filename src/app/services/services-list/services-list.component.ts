@@ -8,6 +8,7 @@ import { faFilter, faPlus, faTrash, faUsers } from '@fortawesome/free-solid-svg-
 import { ServicesListModule } from './services-list.module';
 import { CreateServicesComponent } from './create-services/create-services.component';
 import { FilterServicesComponent } from './filter-services/filter-services.component';
+import { MessgeboxComponent } from 'src/app/section/messgebox/messgebox.component';
 
 @Component({
   selector: 'app-services-list',
@@ -126,33 +127,23 @@ export class ServicesListComponent {
       return;
     }
 
-    // this.dailgoService.open(MessageBoxComponent, {
-    //   autoFocus: false,
-    //   context: {
-    //     Title: 'تأكيد العملية',
-    //     Message: 'هل انت متأكد من عملية الحدف؟',
-    //     OpenType: 'YESNO'
-    //   }
-    // }).onClose.subscribe({
-    //   next: (res) => {
+    this.diag.open(MessgeboxComponent, {
+      autoFocus: false,
+      context: {
+        OpenType: 'YESNO'
+      }
+    }).onClose.subscribe({
+      next: (res) => {
 
-    //     if (!res) return;
+        if (!res) return;
 
-    this.DeleteService(selectedData[0].ServiceRequestID_PK)
+        this.DeleteService(selectedData[0].ServiceRequestID_PK)
+      }
+    })
   }
-  // ShowMessage() {
 
-  //   this.dailgoService.open(MessageBoxComponent, {
-  //     autoFocus: false,
-  //     context: {
-  //       Title: 'لا يمكن إتمام العملية',
-  //       Message: 'يمكن فقط حدف الخدمة اذا كانت حالتها قيد الانتظار!',
-  //       OpenType: 'ONLYOK'
-  //     }
-  //   })
-  // }
   DeleteService(ServiceRequestID_PK) {
-
+    console.log("read")
 
     this.services.DeleteService(ServiceRequestID_PK)
       .subscribe({
@@ -200,6 +191,25 @@ export class ServicesListComponent {
       headerName: 'حالة الخدمة',
       filter: 'agSetColumnFilter',
       filterParams: { applyMiniFilterWhileTyping: true },
+      cellRenderer: (params) => {
+
+        console.log(params);
+        return `<span style="
+        padding: 5px;
+        font-size: 12px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #FFF;
+        background: ${params.data.ServiseStatusID_FK == 40 ? '#080' : '#F0f'};
+        border-radius: 5px;
+        height: 100%;
+        margin: 0 30px;
+        font-weight: bold;
+        ">${params.value}</span>`
+      }
+
 
 
     },

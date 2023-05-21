@@ -17,9 +17,16 @@
 }
 
 .logo {
-  margin-top: 65px;
+  margin-top: 100px;
   text-align: center;
   margin-top: 20px;
+}
+
+.iconeye {
+  position: absolute;
+  left: 360px;
+  top: 130px;
+  color: #923fb5;
 }
 
 h2 {
@@ -63,13 +70,7 @@ input {
   border: 1px solid silver;
 }
 
-/*
-.right{
-  background-image: url(../../assets/imgs/auth-bg.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  padding: 5px;
-} */
+
 .right img {
   display: block;
   width: 100%;

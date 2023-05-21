@@ -51,4 +51,7 @@ export class ServicesService {
     return this.http.post(`${this.config.getAPILink()}/api/CustomersBO/Companies/AdvancedSearch`, obj)
 
   }
+  getRandom(): Observable<any> {
+    return this.http.get(`${this.config.getAPILink()}/api/CRMBackOffice/AsaryaService/Get`)
+  }
 }

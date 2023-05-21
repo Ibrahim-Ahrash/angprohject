@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="left">
+    <div class="leftcontainer">
+      <div class="logofog">
+      </div>
+      <h3>Login</h3>
+      <h5>Don't have an account? Create an account</h5>
+      <div class="form" class="form-group">
+        <form class="form-control" (ngSubmit)="onSubmit()">
+
+          <label for="email">Email</label>
+          <input #username="ngModel" name="username" id="Username" type="email" class="form-control"
+            [(ngModel)]="LogInObject.Username">
+          <label for="password">Password</label>
+          <input #password="ngModel" name="password" id="Password" type="password" class="form-control"
+            [(ngModel)]="LogInObject.Password">
+          <a href="#">Forgot your password?</a><br>
+          <input class="btn btn-primary btn-lg btn-block butt" type="submit" value="Login">
+        </form>
+        <h6>
+          Copyright © 2023 Retyp, LLC. OptinMonster® and Exit Intent® are registered trademarks of Retyp, LLC.
+        </h6>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="right">
+    <div class="box">
+      <div class="headerlogo">
+        <img src="../../assets/imgs/head.svg">
+      </div>
+      <h2>Digital Marketing Training to Explode Your Business Growth</h2>
+      <div class="talk">
+        <p>Get instant access to our library of expert courses, digital content and video training inside of
+          OptinMonster
+          University. Ignite your growth and gain powerful insights on topics like conversion optimization, growth
+          hacking, lead generation, customer acquisition and more!</p>
+        <input class="btn btn-primary btn-lg btn-block butt" type="submit" value="Explore More Option">
+      </div>
+    </div>
+  </div>
+</div>

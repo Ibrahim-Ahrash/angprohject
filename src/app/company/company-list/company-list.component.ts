@@ -1,10 +1,12 @@
 import { ColDef } from 'ag-grid-community';
 import { Component } from '@angular/core';
 import { faFilter, faPlus, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { NbDialogService } from '@nebular/theme';
+import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { FilterCompanyComponent } from './filter-company/filter-company.component';
 import { ServicesService } from 'src/app/@services/services.service';
 import { GridApi } from 'ag-grid-community';
+import { MessgeboxComponent } from 'src/app/section/messgebox/messgebox.component';
+
 @Component({
   selector: 'app-company-list',
   templateUrl: './company-list.component.html',
@@ -13,6 +15,7 @@ import { GridApi } from 'ag-grid-community';
 export class CompanyListComponent {
   constructor(
     private diag: NbDialogService,
+    private toaster: NbToastrService,
     private company: ServicesService
   ) { }
 
@@ -56,35 +59,27 @@ export class CompanyListComponent {
     {
       field: 'CustomerCode',
       headerName: 'CustomerCode',
-      filter: 'agSetColumnFilter',
-      filterParams: { applyMiniFilterWhileTyping: true },
 
     },
     {
       field: 'BranchMangerPhoneNumber',
       headerName: 'رقم هاتف صاحب النشاط',
-      filter: 'agSetColumnFilter',
-      filterParams: { applyMiniFilterWhileTyping: true },
 
     },
     {
       field: 'BranchMangerName',
       headerName: 'اسم صاحب النشاط',
-      filter: 'agSetColumnFilter',
-      filterParams: { applyMiniFilterWhileTyping: true },
 
     },
     {
       field: 'Name',
       headerName: 'اسم الشركة',
-      filter: 'agSetColumnFilter',
-      filterParams: { applyMiniFilterWhileTyping: true },
+
     },
     {
       field: 'BranchID_PK',
       headerName: 'رقم الزبون',
-      filter: 'agNumberColumnFilter',
-      filterParams: { applyMiniFilterWhileTyping: true },
+
     }
 
   ]
@@ -105,11 +100,32 @@ export class CompanyListComponent {
   confirmDelet() {
     const selectedData = this.gridApi.getSelectedRows();
     console.log(selectedData);
-    this.company.DeleteCustomers(selectedData[0].BranchID_PK)
-      .subscribe({
-        next: (res) => {
-          console.log(res)
-        }
-      })
+    this.diag.open(MessgeboxComponent, {
+      autoFocus: false,
+      context: {
+        OpenType: 'YESNO'
+      }
+    }).onClose.subscribe({
+      next: (res) => {
+
+        if (!res) return;
+
+        this.company.DeleteCustomers(selectedData[0].BranchID_PK)
+          .subscribe({
+            next: (res) => {
+              if (res.StatusCode == 200) {
+
+                this.toaster.success("تمت العملية", "تمت عملية الحدف");
+                console.log(res)
+              }
+              else this.toaster.danger("خطأ", res.Message)
+            }
+          })
+      }
+    })
+  }
+
+  getget() {
+
   }
 }

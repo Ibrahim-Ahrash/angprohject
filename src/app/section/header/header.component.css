@@ -2,8 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 200vh;
-  padding: 5px;
+  width: 100%;
 }
 
 .user-actions {
@@ -13,7 +12,6 @@
 }
 
 .icon {
-  padding: 10px;
   width: 60px;
   text-align: center;
   font-size: 18px;
@@ -23,7 +21,7 @@
 .project-log-title {
   display: flex;
   justify-content: space-between;
-  width: 210px;
+  width: 200px;
   margin-top: 5px;
 }
 
@@ -38,6 +36,6 @@
 
 .project-log-title img {
   margin: 30px 20px 10px 0;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+
 }

@@ -1,0 +1,131 @@
+.container {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 30% 1fr;
+  align-items: center;
+}
+
+.left {
+  height: 100%;
+}
+
+.leftcontainer {
+  margin: 250px 400px 0 -100px;
+  text-align: center;
+}
+
+.left .leftcontainer {
+  height: 50%;
+  display: grid;
+  grid-template-rows: 100px 70px 20px 1fr;
+  justify-content: center;
+  align-items: center;
+  margin-right: 200px;
+}
+
+
+.left .leftcontainer .logofog {
+  background: url(../../assets/imgs/fog.png);
+  width: 128px;
+  height: 99px;
+  margin: auto;
+}
+
+.leftcontainer h3 {
+  color: #60656f;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.leftcontainer h5 {
+  font-size: 15px;
+}
+
+.leftcontainer form {
+  height: 270px;
+  width: 350px;
+  border: none;
+}
+
+.leftcontainer form label {
+  padding: 5px;
+  display: block;
+  text-align: left;
+  color: #60656f;
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 10px;
+  background-size: contain;
+}
+
+.leftcontainer a {
+  display: block;
+  text-align: left;
+  margin-top: 10px;
+  font-size: 17px;
+}
+
+.butt {
+  padding: 5px 10px 5px 10px;
+  width: 100%;
+  background-color: #83C11F;
+}
+
+h6 {
+  margin-top: 40px;
+  font-size: 13px;
+}
+
+.right {
+  width: 1211px;
+  height: 100%;
+  background-color: #F4F6F8;
+  background-image: url('../../assets/imgs/men.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right .box {
+  width: 440px;
+  height: 530px;
+  display: grid;
+  grid-template-rows: 90px 110px 150px 50px 50px;
+  background-color: white;
+}
+
+.right .headerlogo {
+  margin-top: 20px;
+  margin-left: 20px;
+  padding: 10px;
+  width: 400px;
+}
+
+.box h2 {
+  font-size: 34px;
+  line-height: 1;
+  color: #364150;
+  font-weight: 800;
+  margin: 0px 46px 5px 53px;
+  max-width: 550px;
+}
+
+.box p {
+  color: #364150;
+  display: block;
+  margin: 0px 45px 5px 55px;
+  max-width: 550px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.box .butt {
+  padding: 5px 10px 5px 10px;
+  width: 80%;
+  margin: 30px 0 0 40px;
+  background-color: #83C11F;
+}
