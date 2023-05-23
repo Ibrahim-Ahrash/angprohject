@@ -10,6 +10,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  background-color: #009B77;
 }
 
 .logo img {
@@ -21,6 +22,7 @@
 .sideheader a {
   margin: 5px;
   padding: 5px;
+  color: black;
 }
 
 .section {
@@ -38,15 +40,22 @@
   position: relative;
 }
 
+.left {
+  position: relative;
+}
 
-
+.left .imagee img {
+  position: absolute;
+  top: 40px;
+  left: -255px;
+}
 
 .box {
   height: 600px;
   width: 393px;
   padding: 24px;
   background-color: #ffff;
-  margin: 41px 200px 120px 163px;
+  margin: 131px 200px 120px 163px;
   border-radius: 4px;
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, .12);
 
@@ -88,7 +97,7 @@
 }
 
 .headerlogo {
-  padding: 15px;
+  padding: 5px;
   margin-left: 5px;
 }
 
@@ -96,8 +105,17 @@
   margin-top: 20px;
 }
 
+.headerlogo h5 {
+  text-align: right;
+}
+
+.headerlogo img {
+  margin-left: 307px;
+  margin-bottom: 5px;
+}
 
 form {
+
   background-color: #f7f7f7;
 }
 
@@ -113,16 +131,22 @@ form button {
   margin: 15px 5px 15px 5px;
 }
 
+
 .butform {
   margin-left: 20px;
 }
 
+.input {
+  position: relative;
+}
+
 .iconeye {
   position: absolute;
-  top: 435px;
-  left: 78.4%;
+  top: 23%;
+  left: 94%;
   color: #923fb5;
 }
+
 
 small {
   color: #F00;
@@ -134,8 +158,4 @@ small {
   margin: 5px 0 0 0;
   font-weight: bolder;
   text-align: right;
-}
-
-.opt {
-  margin-top: 28px !important;
 }

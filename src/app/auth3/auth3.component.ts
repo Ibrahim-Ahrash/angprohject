@@ -13,6 +13,7 @@ export class Auth3Component {
     private auth: AuthService,
     private rout: Router
   ) { }
+  counter = 0;
   eye = faEye;
   noteye = faEyeSlash
   viewPassword: boolean = true;
@@ -21,7 +22,14 @@ export class Auth3Component {
     Password: ""
   }
   Message: string = ""
+
   onSubmit() {
+
+    if (this.loginObhect.Username == "" && this.loginObhect.Password == "") {
+      this.Message = "الرجاء ادخال اسم المستخدم وكلمة المرور";
+      return;
+    }
+
     console.log(this.loginObhect)
     this.auth.LogInToSystem(this.loginObhect)
       .subscribe({
@@ -32,7 +40,17 @@ export class Auth3Component {
             this.rout.navigateByUrl('/home')
           }
           else if (res.StatusCode == 406) {
-            this.Message = "خطأ في اسم المستخدم او كلمة السر"
+            this.counter = this.counter + 1;
+            if (this.counter >= 3) {
+              this.Message = "لقد بادخال خاطئ اكثر من ثلات مرات تم حظرك لمدة 4 ساعات"
+              return;
+            }
+            this.Message = `  لقد ادخلت اسم المستخدم او كلمة المرور ${this.counter} مرات خطأ`
+
+          }
+          else {
+
+            this.Message = "حدث خطأ غير معروف يرجى المحاولة في وقت لاحق"
           }
         }
       })

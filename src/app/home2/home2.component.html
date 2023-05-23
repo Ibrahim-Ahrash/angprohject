@@ -1,0 +1,24 @@
+<nb-layout>
+  <nb-layout-header class="header"><app-header class="w-100"></app-header>
+  </nb-layout-header>
+
+  <nb-layout-column class="colored-column-warning section"><router-outlet></router-outlet></nb-layout-column>
+  <nb-sidebar right>
+    <div class="container">
+
+      <div class="lists">
+        <ul class="nav-list border-white">
+          <li class="nav-list-item" *ngFor="let item of items">
+
+            <span>
+              <a routerLink="{{item.link}}">{{item.title}}</a>
+            </span>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+  </nb-sidebar>
+
+</nb-layout>

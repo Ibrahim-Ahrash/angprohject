@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  height: 70px;
 }
 
 .user-actions {
@@ -15,7 +16,15 @@
   width: 60px;
   text-align: center;
   font-size: 18px;
-  color: #3c5dab;
+  /* color: #3c5dab;
+ */
+  color: #000310;
+
+}
+
+.tes {
+  padding: 5px;
+  margin: auto;
 }
 
 .project-log-title {

@@ -90,38 +90,50 @@
             </div>
           </div>
         </div>
+        <div class="imagee" style="
+        position: absolute;
+        top: 10px;
+    left: 0px;
+    ">
+          <img src="../../assets/imgs/traveler.png" alt="traveler">
+        </div>
       </div>
-      <div class="image">
-        <img src="../../assets/imgs/traveler.png" alt="traveler" hidden>
-      </div>
+
     </div>
 
     <div class="right">
       <div class="mainr">
         <div class="headerlogo">
           <img src="../../assets/imgs/logo.png" alt="">
-          <h5>Login</h5>
-          <p>Join the smarter way to travel with lots of benefits.</p>
+          <h5>تسجيل الدخول</h5>
+          <p style="text-align: right;">الرجاء ادخال اسم المستخدم وكلمة المرور</p>
         </div>
 
-        <form class="form-control border-0" (ngSubmit)="onSubmit()">
+        <div class="form">
+          <form class="form-control border-0" (ngSubmit)="onSubmit()">
 
-          <input type="text" class="form-control" placeholder="Email" #username="ngModel" name="username" id="Username"
-            [(ngModel)]="loginObhect.Username" required>
+            <input type="text" class="form-control" placeholder="Email" #username="ngModel" name="username"
+              id="Username" [(ngModel)]="loginObhect.Username" required>
 
-          <small *ngIf="username.invalid && username.touched">Username is
-            required</small>
+            <small *ngIf="username.invalid && username.touched">Username is
+              required</small>
 
-          <input type=" password" class="form-control" placeholder="password" #password="ngModel" name="password"
-            id="Password" [(ngModel)]="loginObhect.Password" [type]="viewPassword ? 'password' : 'text'">
+            <div class="input">
+              <input type="password" class="form-control" placeholder="password" #password="ngModel" name="password"
+                required [(ngModel)]="loginObhect.Password" [type]="viewPassword ? 'password' : 'text'">
 
-          <fa-icon class="iconeye" (click)="viewPassword=!viewPassword" [icon]="viewPassword ? noteye : eye"
-            [ngClass]="{'opt': viewPassword}"></fa-icon>
-          <small *ngIf="password.invalid && password.touched">Password is required</small>
+              <fa-icon class="iconeye" (click)="viewPassword=!viewPassword"
+                [icon]="viewPassword ? noteye : eye"></fa-icon>
+            </div>
+            <small *ngIf="password.invalid && password.touched">Password is required</small>
 
-          <small class="secsmall">{{Message}}</small>
-          <button type="button" class="btn btn-success btn-block" type="submit">Success</button>
-        </form>
+            <!-- [ngClass]="{'opt': viewPassword , 'iconeye': !viewPassword}" -->
+
+
+            <small class="secsmall">{{Message}}</small>
+            <button type="button" class="btn btn-success btn-block" type="submit">تسجيل الدخول</button>
+          </form>
+        </div>
         <div class="butform">
           <a href="#">Forgot Your Password?</a>
           <p>Having problem login in? Click Here</p>
