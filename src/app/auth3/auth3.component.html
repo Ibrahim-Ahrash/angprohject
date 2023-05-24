@@ -115,8 +115,7 @@
             <input type="text" class="form-control" placeholder="Email" #username="ngModel" name="username"
               id="Username" [(ngModel)]="loginObhect.Username" required>
 
-            <small *ngIf="username.invalid && username.touched">Username is
-              required</small>
+            <small *ngIf="username.invalid && username.touched">يرجى ادخال اسم المستخدم</small>
 
             <div class="input">
               <input type="password" class="form-control" placeholder="password" #password="ngModel" name="password"
@@ -125,7 +124,7 @@
               <fa-icon class="iconeye" (click)="viewPassword=!viewPassword"
                 [icon]="viewPassword ? noteye : eye"></fa-icon>
             </div>
-            <small *ngIf="password.invalid && password.touched">Password is required</small>
+            <small *ngIf="password.invalid && password.touched">يرجى ادخال كلمة المرور</small>
 
             <!-- [ngClass]="{'opt': viewPassword , 'iconeye': !viewPassword}" -->
 
@@ -135,8 +134,8 @@
           </form>
         </div>
         <div class="butform">
-          <a href="#">Forgot Your Password?</a>
-          <p>Having problem login in? Click Here</p>
+          <a href="#">هل نسيت كلمة المرور ؟</a>
+          <!-- <p>Having problem login in? Click Here</p> -->
         </div>
       </div>
     </div>

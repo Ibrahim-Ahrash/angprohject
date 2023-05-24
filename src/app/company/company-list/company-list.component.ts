@@ -6,6 +6,7 @@ import { FilterCompanyComponent } from './filter-company/filter-company.componen
 import { ServicesService } from 'src/app/@services/services.service';
 import { GridApi } from 'ag-grid-community';
 import { MessgeboxComponent } from 'src/app/section/messgebox/messgebox.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-company-list',
@@ -16,7 +17,8 @@ export class CompanyListComponent {
   constructor(
     private diag: NbDialogService,
     private toaster: NbToastrService,
-    private company: ServicesService
+    private company: ServicesService,
+    private routess: Router
   ) { }
 
   filt = faFilter;
@@ -24,7 +26,6 @@ export class CompanyListComponent {
   trash = faTrash;
   searc = faSearch;
   rowData: any[] = [];
-
 
 
   searchvalue = {
@@ -125,7 +126,7 @@ export class CompanyListComponent {
     })
   }
 
-  getget() {
-
+  addCompnay() {
+    this.routess.navigateByUrl('/home/company/add-company')
   }
 }

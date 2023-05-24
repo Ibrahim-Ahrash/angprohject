@@ -1,13 +1,5 @@
-.main {
-  position: absolute;
-  width: 100%;
-  top: 4rem;
-  z-index: 1;
-
-}
-
 .header {
-  background-color: #aab4bd;
+  background-color: #82b8e9;
 }
 
 
@@ -59,4 +51,34 @@
 a {
   text-decoration: none;
   color: white;
+}
+
+@media (max-width: 420px) {
+  .container {
+    max-width: 120px;
+    padding: 0;
+    margin: 0;
+    margin-left: 136px;
+
+  }
+
+  .lists {
+    width: 100%;
+    margin-left: 0;
+
+  }
+
+  .nav-list {
+    margin-right: 0;
+  }
+
+  .nav-list-item {
+    width: 100%;
+
+  }
+
+  .nav-list-item span {
+    width: calc(100% - 5px);
+  }
+
 }

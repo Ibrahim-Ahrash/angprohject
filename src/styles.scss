@@ -65,3 +65,11 @@ body {
 .scrollable {
   padding: 0 !important;
 }
+
+.nb-theme-default {
+  border: none;
+}
+
+[dir=ltr] .nb-theme-default nb-action {
+  border: none;
+}

@@ -134,7 +134,13 @@ form button {
 
 .butform {
   margin-left: 20px;
+  text-align: right;
 }
+
+.butform a {
+  text-decoration: none;
+}
+
 
 .input {
   position: relative;
@@ -151,6 +157,8 @@ form button {
 small {
   color: #F00;
   margin: 0 0 15px 5px;
+  display: block;
+  text-align: right;
 }
 
 .secsmall {
@@ -158,4 +166,61 @@ small {
   margin: 5px 0 0 0;
   font-weight: bolder;
   text-align: right;
+}
+
+
+@media (max-width: 420px) {
+  .sideheader a {
+    padding: 1px;
+  }
+
+  .left {
+    display: none;
+  }
+
+  .right {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .headerlogo h5,
+  p {
+    margin-right: 20px;
+  }
+
+}
+
+@media (min-width:421px) and (max-width:770px) {
+  .left {
+    display: none;
+  }
+
+  .section {
+    background: url('../../assets//imgs/bg-benefits.png');
+    background-position: 0 25%;
+    background-repeat: no-repeat;
+    height: 100%;
+    position: relative;
+  }
+
+}
+
+@media (min-width: 771px) and (max-width: 991px) {
+  .box {
+    width: 350px;
+    height: fit-content;
+    margin: 131px 20px 120px 5px;
+  }
+
+  .left .imagee img {
+    display: none;
+  }
+
+}
+
+@media (min-width: 993px) and (max-width: 1197px) {
+  .box {
+    margin: 131px 55px 80px 5px;
+  }
+
 }

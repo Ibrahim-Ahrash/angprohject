@@ -71,7 +71,7 @@ export class ServicesListComponent {
         next: (res) => {
 
           this.rowData = res.JsonArray;
-          console.log(res);
+          // console.log(res);
           console.log(localStorage.getItem("getServicesList"))
         }
       })
@@ -167,7 +167,7 @@ export class ServicesListComponent {
 
   ShowCustomerData(CustomerData) {
 
-    console.log(CustomerData);
+    // console.log(CustomerData);
 
     this.router.navigateByUrl(`/home/services/service-details/${CustomerData.data.ServiceRequestID_PK}`)
   }
@@ -193,7 +193,7 @@ export class ServicesListComponent {
       filterParams: { applyMiniFilterWhileTyping: true },
       cellRenderer: (params) => {
 
-        console.log(params);
+        // console.log(params);
         return `<span style="
         padding: 5px;
         font-size: 12px;
