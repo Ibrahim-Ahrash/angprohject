@@ -152,7 +152,7 @@ export class ServicesListComponent {
           if (res.StatusCode == 200) {
 
             this.toaster.success("تمت العملية", "تمت عملية الحدف");
-            // this.getServiceList();
+            this.getServiceList();
             this.rowData = this.rowData.filter(v => v.ServiceRequestID_PK != ServiceRequestID_PK)
 
           } else {
@@ -205,7 +205,7 @@ export class ServicesListComponent {
         background: ${params.data.ServiseStatusID_FK == 40 ? '#080' : '#F0f'};
         border-radius: 5px;
         height: 100%;
-        margin: 0 30px;
+        margin: 0px 20px;
         font-weight: bold;
         ">${params.value}</span>`
       }

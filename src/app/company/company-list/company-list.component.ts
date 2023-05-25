@@ -127,6 +127,14 @@ export class CompanyListComponent {
   }
 
   addCompnay() {
-    this.routess.navigateByUrl('/home/company/add-company')
+    // this.routess.navigateByUrl('/home/company/add-company')
+    console.log("Clicked")
+    this.company.getUser()
+      .subscribe({
+        next: (res) => {
+          console.log(res.JsonArray)
+        }
+      })
   }
+
 }

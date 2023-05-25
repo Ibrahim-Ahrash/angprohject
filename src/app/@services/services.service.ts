@@ -54,4 +54,8 @@ export class ServicesService {
   getRandom(): Observable<any> {
     return this.http.get(`${this.config.getAPILink()}/api/CRMBackOffice/AsaryaService/Get`)
   }
+  getUser(): Observable<any> {
+    return this.http.get(`${this.config.getAPILink()}/api/Users/GetAll`)
+  }
 }
+
