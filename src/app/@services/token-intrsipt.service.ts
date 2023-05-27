@@ -14,12 +14,15 @@ export class TokenIntrsiptService {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
+    console.log(req);
+
     let newRequst = req.clone({
       setHeaders: {
         "Authorization": `Bearer ${this.auth.getToken()}`,
         'Content-Type': 'application/json'
       },
     });
+    console.log(newRequst);
 
     return next.handle(newRequst).pipe(
       finalize(() => {

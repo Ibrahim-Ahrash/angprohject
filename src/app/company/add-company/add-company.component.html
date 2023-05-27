@@ -1,0 +1,163 @@
+<nb-card class="card-filter">
+  <nb-card-header class="card-header p-1">
+    <div class="bord"></div>
+    <p>بيانات الشركة</p>
+
+  </nb-card-header>
+  <nb-card-body class="card-filter">
+    <form>
+      <div class="container">
+
+        <div class="left">
+          <div class="form-feilds">
+            <label class="label">اسم المالك</label>
+            <div class="inpute">
+              <input type="text" class="form-control input">
+              <fa-icon [icon]="suit" class="icon fa-fw"></fa-icon>
+            </div>
+          </div>
+          <div class="form-feilds">
+            <label class="label">نوع النشاط</label>
+            <div class="inpute">
+              <select type="text" class="form-select form-control input"></select>
+              <fa-icon [icon]="priductIcon" class="icon   fa-fw"></fa-icon>
+            </div>
+          </div>
+          <div class="form-feilds">
+            <label class="label"> المنطقة</label>
+            <div class="inpute">
+              <select type="text" class="form-select form-control input"></select>
+              <fa-icon [icon]="areaicon" class="icon   fa-fw"></fa-icon>
+            </div>
+          </div>
+          <div class="form-feilds">
+            <label class="label">الفرع</label>
+            <div class="inpute">
+              <!-- <select #branch autocomplete="off" dir="rtl" (keyup)="onKeyPress($event)" type="text" name="customer"
+                (blur)="HideSearchResult()" type="text" class="form-select form-control input" input>
+
+                <option value="0">f</option>
+                <option value="1">
+                  <ul>
+                    <li *ngFor="let c  of branches">{{c.Name}}</li>
+                  </ul>
+                </option>
+              </select> -->
+
+              <input #branch autocomplete="off" dir="rtl" (keyup)="onKeyPress($event)" type="text"
+                class="form-select form-control input" name="customer" (blur)="HideSearchResult()">
+              <div *ngIf="ShowResultMenu" class="search-result">
+                <ul class="menu">
+                  <li *ngFor="let c  of branches">{{c.Name}}</li>
+                </ul>
+              </div>
+
+
+
+              <fa-icon [icon]="nameIcon" class="icon   fa-fw "></fa-icon>
+            </div>
+          </div>
+          <div class="form-feilds">
+            <label class="label">النظام</label>
+            <div class="inpute ">
+              <select type="text" class="form-select form-control input" input></select>
+              <fa-icon [icon]="arrow" class="icon   fa-fw"></fa-icon>
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="form-feilds">
+            <label class="label">اسم الشركة</label>
+            <div class="inpute">
+              <input type="text" class="form-control input">
+              <fa-icon [icon]="nameIcon" class="icon   fa-fw"></fa-icon>
+            </div>
+          </div>
+          <div class="form-feilds">
+            <label class="label">رقم الهاتف</label>
+            <div class="inpute">
+              <input type="text" class="form-control input" placeholder="+218">
+              <fa-icon [icon]="phoneIcon" class="icon   fa-fw"></fa-icon>
+            </div>
+          </div>
+          <div class="form-feilds">
+            <label class="label">المدينة</label>
+            <div class="inpute">
+              <select type="text" class="form-select form-control input"></select>
+              <fa-icon [icon]="cityIcon" class="icon   fa-fw"></fa-icon>
+            </div>
+          </div>
+          <div class="form-feilds">
+            <label class="label">العنوان</label>
+            <div class="inpute">
+              <input type="text" class="form-control input">
+              <fa-icon [icon]="addressIcon" class="icon   fa-fw"></fa-icon>
+            </div>
+          </div>
+          <div class="form-feilds">
+            <label class="label">المندوب</label>
+            <div class="inpute">
+              <select type="text" class="form-select form-control input"></select>
+              <fa-icon [icon]="areaicon" class="icon   fa-fw"></fa-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-header">
+        <div class="bord"></div>
+        <p>بيانات الحساب</p>
+      </div>
+      <div class="container">
+
+        <div class="left">
+          <div class="form-feilds">
+            <label class="label">رقم الهاتف</label>
+            <div class="inpute">
+              <input type="text" class="form-control input">
+              <fa-icon [icon]="phoneIcon" class="icon fa-fw"></fa-icon>
+            </div>
+          </div>
+          <div class="form-feilds">
+            <label class="label">كلمة المرور</label>
+            <div class="inpute">
+              <input type="text" class="form-control input">
+              <fa-icon [icon]="lock" class="icon   fa-fw"></fa-icon>
+            </div>
+          </div>
+
+          <div class="form-feilds">
+            <button type="submit" class="btn btn-outline-secondary">حفظ</button>
+          </div>
+        </div>
+        <div class="right">
+          <div class="form-feilds">
+            <label class="label">اسم صاحب الحساب</label>
+            <div class="inpute">
+              <input type="text" class="form-control input">
+              <fa-icon [icon]="user" class="icon   fa-fw"></fa-icon>
+            </div>
+          </div>
+          <div class="form-feilds">
+            <label class="label">اسم السمتخدم</label>
+            <div class="inpute">
+              <input type="text" class="form-control input">
+              <fa-icon [icon]="phoneIcon" class="icon   fa-fw"></fa-icon>
+            </div>
+          </div>
+          <div class="form-feilds">
+            <label class="label">البريد الالكتروني</label>
+            <div class="inpute">
+              <input type="text" class="form-control input">
+              <fa-icon [icon]="at" class="icon   fa-fw"></fa-icon>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </form>
+  </nb-card-body>
+  <nb-card-footer class="pads">
+
+  </nb-card-footer>
+</nb-card>
