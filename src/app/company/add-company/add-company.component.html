@@ -5,62 +5,52 @@
 
   </nb-card-header>
   <nb-card-body class="card-filter">
-    <form>
+    <form id="companyDetails" [formGroup]="companyDetails" class="form-control formm" (ngSubmit)="onSubmit()">
       <div class="container">
-
         <div class="left">
           <div class="form-feilds">
             <label class="label">اسم المالك</label>
             <div class="inpute">
-              <input type="text" class="form-control input">
+              <input type="text" class="form-control input" formControlName="Owner" id="owner">
               <fa-icon [icon]="suit" class="icon fa-fw"></fa-icon>
             </div>
           </div>
           <div class="form-feilds">
             <label class="label">نوع النشاط</label>
             <div class="inpute">
-              <select type="text" class="form-select form-control input"></select>
+              <select formControlName="activityType" id="activitie" name="activity" type="text"
+                class="form-select form-control input">
+                <option value="0" *ngFor="let c of activitie">{{c.Caption}}</option>
+              </select>
               <fa-icon [icon]="priductIcon" class="icon   fa-fw"></fa-icon>
             </div>
           </div>
+
           <div class="form-feilds">
             <label class="label"> المنطقة</label>
             <div class="inpute">
-              <select type="text" class="form-select form-control input"></select>
+              <select formControlName="subcity" id="subcity" name="subcity" type="text"
+                class="form-select form-control input">
+                <option value="0" *ngFor="let a of subCityNames">{{a.SubCityName}}</option>
+              </select>
               <fa-icon [icon]="areaicon" class="icon   fa-fw"></fa-icon>
             </div>
           </div>
           <div class="form-feilds">
             <label class="label">الفرع</label>
             <div class="inpute">
-              <!-- <select #branch autocomplete="off" dir="rtl" (keyup)="onKeyPress($event)" type="text" name="customer"
-                (blur)="HideSearchResult()" type="text" class="form-select form-control input" input>
-
-                <option value="0">f</option>
-                <option value="1">
-                  <ul>
-                    <li *ngFor="let c  of branches">{{c.Name}}</li>
-                  </ul>
-                </option>
-              </select> -->
-
-              <input #branch autocomplete="off" dir="rtl" (keyup)="onKeyPress($event)" type="text"
-                class="form-select form-control input" name="customer" (blur)="HideSearchResult()">
-              <div *ngIf="ShowResultMenu" class="search-result">
-                <ul class="menu">
-                  <li *ngFor="let c  of branches">{{c.Name}}</li>
-                </ul>
-              </div>
-
-
-
+              <select formControlName="branch" type="text" class="form-select form-control input" id="branch">
+                <option value="0" *ngFor="let c of branches">{{c.BranchName}}</option>
+              </select>
               <fa-icon [icon]="nameIcon" class="icon   fa-fw "></fa-icon>
             </div>
           </div>
           <div class="form-feilds">
             <label class="label">النظام</label>
             <div class="inpute ">
-              <select type="text" class="form-select form-control input" input></select>
+              <select formControlName="system" id="system" name="system" class="form-select form-control input">
+                <option value="0" *ngFor="let c of system">{{c.SystemName}}</option>
+              </select>
               <fa-icon [icon]="arrow" class="icon   fa-fw"></fa-icon>
             </div>
           </div>
@@ -69,35 +59,45 @@
           <div class="form-feilds">
             <label class="label">اسم الشركة</label>
             <div class="inpute">
-              <input type="text" class="form-control input">
+              <input formControlName="custmerName" id="custmername" type="text" class="form-control input">
               <fa-icon [icon]="nameIcon" class="icon   fa-fw"></fa-icon>
             </div>
           </div>
           <div class="form-feilds">
             <label class="label">رقم الهاتف</label>
             <div class="inpute">
-              <input type="text" class="form-control input" placeholder="+218">
+              <input #phone (change)="onSelected(phone.value)" name="number" formControlName="phoneNumber" id="phone"
+                name="phoneNumber" type="text" class="form-control input" placeholder="+218">
               <fa-icon [icon]="phoneIcon" class="icon   fa-fw"></fa-icon>
+              <div *ngIf="companyDetails.get('phoneNumber').touched && companyDetails.get('phoneNumber').invalid"
+                class="alert alert-danger errors"> {{
+                companyDetails.get('phoneNumber').errors?.['PhoneError']
+                }}</div>
             </div>
           </div>
           <div class="form-feilds">
             <label class="label">المدينة</label>
             <div class="inpute">
-              <select type="text" class="form-select form-control input"></select>
-              <fa-icon [icon]="cityIcon" class="icon   fa-fw"></fa-icon>
+              <select #teams name="city" formControlName="City" id="city" type="text"
+                class="form-select form-control input">
+                <option *ngFor="let v of cities" [value]="v.CityID_PK">{{v.Name}}</option>
+              </select>
+              <fa-icon [icon]="cityIcon" class="icon fa-fw"></fa-icon>
             </div>
           </div>
           <div class="form-feilds">
             <label class="label">العنوان</label>
             <div class="inpute">
-              <input type="text" class="form-control input">
+              <input formControlName="Address" id="address" type="text" class="form-control input">
               <fa-icon [icon]="addressIcon" class="icon   fa-fw"></fa-icon>
             </div>
           </div>
           <div class="form-feilds">
             <label class="label">المندوب</label>
             <div class="inpute">
-              <select type="text" class="form-select form-control input"></select>
+              <select formControlName="Man" id="Man" type="text" class="form-select form-control input">
+                <option value="0">بلا تحديد</option>
+              </select>
               <fa-icon [icon]="areaicon" class="icon   fa-fw"></fa-icon>
             </div>
           </div>
@@ -113,41 +113,50 @@
           <div class="form-feilds">
             <label class="label">رقم الهاتف</label>
             <div class="inpute">
-              <input type="text" class="form-control input">
+              <input value="{{ selectedTeam }}" formControlName="phoneNumber" id="phone" name="phoneNumber" type="text"
+                class="form-control input">
               <fa-icon [icon]="phoneIcon" class="icon fa-fw"></fa-icon>
+              <div *ngIf="companyDetails.get('phoneNumber').touched && companyDetails.get('phoneNumber').invalid"
+                class="alert alert-danger errors"> {{
+                companyDetails.get('phoneNumber').errors?.['PhoneError']
+                }}</div>
             </div>
           </div>
           <div class="form-feilds">
             <label class="label">كلمة المرور</label>
             <div class="inpute">
-              <input type="text" class="form-control input">
+              <input formControlName="password" type="text" class="form-control input">
               <fa-icon [icon]="lock" class="icon   fa-fw"></fa-icon>
             </div>
           </div>
 
           <div class="form-feilds">
-            <button type="submit" class="btn btn-outline-secondary">حفظ</button>
+            <button type="submit" form="companyDetails" class="btn btn-outline-secondary">حفظ</button>
           </div>
         </div>
         <div class="right">
           <div class="form-feilds">
             <label class="label">اسم صاحب الحساب</label>
             <div class="inpute">
-              <input type="text" class="form-control input">
+              <input formControlName="accountOwnerName" id="accountOwnername" type="text" class="form-control input">
               <fa-icon [icon]="user" class="icon   fa-fw"></fa-icon>
             </div>
           </div>
           <div class="form-feilds">
-            <label class="label">اسم السمتخدم</label>
+            <label class="label">اسم المستخدم</label>
             <div class="inpute">
-              <input type="text" class="form-control input">
+              <input formControlName="userName" id="username" type="text" class="form-control input">
               <fa-icon [icon]="phoneIcon" class="icon   fa-fw"></fa-icon>
+              <div class="alert alert-danger errors"
+                *ngIf="companyDetails.get('userName').touched && companyDetails.get('userName').invalid">
+                هذا الحقل مطلوب
+              </div>
             </div>
           </div>
           <div class="form-feilds">
             <label class="label">البريد الالكتروني</label>
             <div class="inpute">
-              <input type="text" class="form-control input">
+              <input formControlName="email" type="text" class="form-control input">
               <fa-icon [icon]="at" class="icon   fa-fw"></fa-icon>
             </div>
           </div>

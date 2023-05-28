@@ -4,7 +4,7 @@ import { AddCompanyComponent } from './add-company.component';
 import { AddCompanyRoutingModule } from './add-company-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NbCardModule, NbActionsModule, NbButtonModule } from '@nebular/theme';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AddCompanyComponent],
@@ -14,7 +14,9 @@ import { NbCardModule, NbActionsModule, NbButtonModule } from '@nebular/theme';
     NbCardModule,
     NbActionsModule,
     NbButtonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AddCompanyModule { }

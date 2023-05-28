@@ -14,7 +14,6 @@ export class TokenIntrsiptService {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    console.log(req);
 
     let newRequst = req.clone({
       setHeaders: {
@@ -22,7 +21,7 @@ export class TokenIntrsiptService {
         'Content-Type': 'application/json'
       },
     });
-    console.log(newRequst);
+
 
     return next.handle(newRequst).pipe(
       finalize(() => {
