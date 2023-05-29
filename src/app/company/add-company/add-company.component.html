@@ -13,6 +13,9 @@
             <div class="inpute">
               <input type="text" class="form-control input" formControlName="Owner" id="owner">
               <fa-icon [icon]="suit" class="icon fa-fw"></fa-icon>
+              <div *ngIf="companyDetails.get('Owner').touched && companyDetails.get('Owner').invalid"
+                class="alert alert-danger errors"> {{
+                companyDetails.get('Owner').errors?.['SelectError']}}</div>
             </div>
           </div>
           <div class="form-feilds">
@@ -31,7 +34,8 @@
             <div class="inpute">
               <select formControlName="subcity" id="subcity" name="subcity" type="text"
                 class="form-select form-control input">
-                <option value="0" *ngFor="let a of subCityNames">{{a.SubCityName}}</option>
+                <option value="0">حدد واحدة</option>
+                <option [value]="a.SubCityID_PK" *ngFor="let a of SubCities">{{a.SubCityName}}</option>
               </select>
               <fa-icon [icon]="areaicon" class="icon   fa-fw"></fa-icon>
             </div>
@@ -40,7 +44,8 @@
             <label class="label">الفرع</label>
             <div class="inpute">
               <select formControlName="branch" type="text" class="form-select form-control input" id="branch">
-                <option value="0" *ngFor="let c of branches">{{c.BranchName}}</option>
+                <option value="0">حدد واحدة</option>
+                <option value="1" *ngFor="let c of branches">{{c.BranchName}}</option>
               </select>
               <fa-icon [icon]="nameIcon" class="icon   fa-fw "></fa-icon>
             </div>
@@ -49,9 +54,10 @@
             <label class="label">النظام</label>
             <div class="inpute ">
               <select formControlName="system" id="system" name="system" class="form-select form-control input">
-                <option value="0" *ngFor="let c of system">{{c.SystemName}}</option>
+                <option value="0">حدد واحدة</option>
+                <option value="1" *ngFor="let c of system">{{c.SystemName}}</option>
               </select>
-              <fa-icon [icon]="arrow" class="icon   fa-fw"></fa-icon>
+              <fa-icon [icon]="arrow" class="icon fa-fw"></fa-icon>
             </div>
           </div>
         </div>
@@ -61,6 +67,11 @@
             <div class="inpute">
               <input formControlName="custmerName" id="custmername" type="text" class="form-control input">
               <fa-icon [icon]="nameIcon" class="icon   fa-fw"></fa-icon>
+
+              <div *ngIf="companyDetails.get('custmerName').touched && companyDetails.get('custmerName').invalid"
+                class="alert alert-danger errors"> {{
+                companyDetails.get('custmerName').errors?.['SelectError']}}</div>
+
             </div>
           </div>
           <div class="form-feilds">
@@ -90,6 +101,8 @@
             <div class="inpute">
               <input formControlName="Address" id="address" type="text" class="form-control input">
               <fa-icon [icon]="addressIcon" class="icon   fa-fw"></fa-icon>
+              <div *ngIf="companyDetails.get('Address').touched && companyDetails.get('Address').invalid"
+                class="alert alert-danger errors">يرجى ادخال العنوان</div>
             </div>
           </div>
           <div class="form-feilds">
@@ -125,8 +138,14 @@
           <div class="form-feilds">
             <label class="label">كلمة المرور</label>
             <div class="inpute">
-              <input formControlName="password" type="text" class="form-control input">
+              <input formControlName="password" [type]="showPassword ? 'text' : 'password'" class="form-control input">
               <fa-icon [icon]="lock" class="icon   fa-fw"></fa-icon>
+              <fa-icon class=" fa-fw iconeye" (click)="showPassword=!showPassword"
+                [icon]="!showPassword ? noteye : eye"></fa-icon>
+              <div *ngIf="companyDetails.get('password').touched && companyDetails.get('password').invalid"
+                class="alert alert-danger errors"> {{
+                companyDetails.get('password').errors?.['passwordError']
+                }}</div>
             </div>
           </div>
 
@@ -140,6 +159,10 @@
             <div class="inpute">
               <input formControlName="accountOwnerName" id="accountOwnername" type="text" class="form-control input">
               <fa-icon [icon]="user" class="icon   fa-fw"></fa-icon>
+              <div
+                *ngIf="companyDetails.get('accountOwnerName').touched && companyDetails.get('accountOwnerName').invalid"
+                class="alert alert-danger errors"> {{
+                companyDetails.get('accountOwnerName').errors?.['SelectError']}}</div>
             </div>
           </div>
           <div class="form-feilds">
@@ -158,6 +181,10 @@
             <div class="inpute">
               <input formControlName="email" type="text" class="form-control input">
               <fa-icon [icon]="at" class="icon   fa-fw"></fa-icon>
+              <div *ngIf="companyDetails.get('email').touched && companyDetails.get('email').invalid"
+                class="alert alert-danger errors">
+                خطأ في البريد الالكتروني يجب ادخال بريد صحيح
+              </div>
             </div>
           </div>
         </div>

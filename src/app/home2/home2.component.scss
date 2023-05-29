@@ -43,7 +43,6 @@
 
 .nav-list-item span {
   width: 170px;
-  text-transform: capitalize;
   text-align: right;
   margin-right: 10px;
 }
@@ -51,6 +50,7 @@
 a {
   text-decoration: none;
   color: white;
+  padding: 18px;
 }
 
 @media (max-width: 420px) {

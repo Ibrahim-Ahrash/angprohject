@@ -34,6 +34,5 @@ export class Home2Component implements OnInit {
     this.routee.navigateByUrl('')
   }
   ngOnInit(): void {
-    console.log(this.items)
   }
 }

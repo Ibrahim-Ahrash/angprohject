@@ -5,6 +5,8 @@ import { Observable, forkJoin, from } from 'rxjs';
 import { CompanyserviceService } from 'src/app/@services/companyservice.service';
 import { FormValidationService } from 'src/app/@services/form-validation.service';
 import { ServicesService } from 'src/app/@services/services.service';
+import { faEye } from '@fortawesome/free-regular-svg-icons'
+import { faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 @Component({
   selector: 'app-add-company',
   templateUrl: './add-company.component.html',
@@ -16,7 +18,8 @@ export class AddCompanyComponent implements OnInit {
     private company: ServicesService,
     private validation: FormValidationService
   ) { }
-
+  eye = faEye;
+  noteye = faEyeSlash
   ShowResultMenu = true;
 
 
@@ -44,22 +47,23 @@ export class AddCompanyComponent implements OnInit {
     SearchValue: ''
   }
 
+  SubCities = [];
 
   companyDetails = new FormGroup({
-    custmerName: new FormControl('', Validators.required),
+    custmerName: new FormControl('', [Validators.required, this.validation.ValidateSelectInput]),
     phoneNumber: new FormControl('', [Validators.required, this.validation.ValidatePhoneNumber]),
-    City: new FormControl(''),
+    City: new FormControl('', Validators.required),
     Address: new FormControl('', Validators.required),
     Man: new FormControl(''),
-    Owner: new FormControl('', Validators.required),
-    activityType: new FormControl(''),
-    subcity: new FormControl(''),
-    branch: new FormControl(''),
-    system: new FormControl(''),
-    accountOwnerName: new FormControl(''),
-    userName: new FormControl('', Validators.required),
-    email: new FormControl(''),
-    password: new FormControl('', Validators.required),
+    Owner: new FormControl('', [Validators.required, this.validation.ValidateSelectInput]),
+    activityType: new FormControl('', Validators.required),
+    subcity: new FormControl('0', Validators.required),
+    branch: new FormControl('', Validators.required),
+    system: new FormControl('', Validators.required),
+    accountOwnerName: new FormControl('', [Validators.required, this.validation.ValidateSelectInput]),
+    userName: new FormControl('', [Validators.required, this.validation.ValidateSelectInput]),
+    email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
+    password: new FormControl('', [Validators.required, this.validation.validatePassword]),
 
   })
   subcityarea = '';
@@ -70,7 +74,14 @@ export class AddCompanyComponent implements OnInit {
     this.getcom.getSystemModuls(),
     this.company.getBranch()
   ];
-
+  getCities() {
+    this.getcom.getCities()
+      .subscribe({
+        next: (res) => {
+          this.cities = res.JsonArray
+        }
+      })
+  }
 
   ngOnInit(): void {
 
@@ -78,14 +89,17 @@ export class AddCompanyComponent implements OnInit {
     this.companyDetails.get('City').valueChanges.subscribe({
       next: (res) => {
 
-        this.subcityarea = res
-        this.cities.forEach(obj => {
-          if (obj.CityID_PK == res) {
-            this.subcities = obj.SubCities;
-          }
+        this.SubCities = this.cities.filter(v => v.CityID_PK == res)[0].SubCities;
 
-        });
-        console.log(this.gggg());
+
+        // this.subcityarea = res
+        // this.cities.forEach(obj => {
+        //   if (obj.CityID_PK == res) {
+        //     this.subcities = obj.SubCities;
+        //   }
+
+        // });
+        // console.log(this.gggg());
       }
 
     })
@@ -93,51 +107,39 @@ export class AddCompanyComponent implements OnInit {
     forkJoin(this.sources).subscribe({
       next: (res) => {
         this.cities = res[0].JsonArray;
-        console.log(this.cities);
-
         this.activitie = res[1].JsonArray;
-        this.system = res[2].JsonArray;
+        this.system = res[2].JsonArray.slice(1);
         this.branches = res[3].JsonArray
 
       }
     })
 
   }
-  subCityNames: any
-  gggg() {
-    this.subCityNames = this.subcities.map(subCity => {
-      return { SubCityName: subCity.SubCityName };
-    });
+  // subCityNames: any
+  // gggg() {
+  //   this.subCityNames = this.subcities.map(subCity => {
+  //     return { SubCityName: subCity.SubCityName };
+  //   });
 
-    console.log(this.subCityNames);
-  }
+
   getBrah() {
     this.company.getBranch()
       .subscribe({
         next: (res) => {
           this.branches = res.JsonArray;
-          console.log(this.branches);
         }
       })
   }
 
-  HideSearchResult() {
-
-    setTimeout(() => this.ShowResultMenu = false, 500)
-  }
-  onSubmit() {
-    console.log(this.companyDetails)
-  }
   selectedTeam = '';
   onSelected(value: string): void {
     this.selectedTeam = value;
   }
-  // onCityChange() {
-  //   if (this.subcityarea) {
-  //     this.subcities = this.subcityarea.subcities;
-  //   } else {
-  //     this.subcities = [];
-  //   }
-  // }
-
+  onSubmit() {
+    console.log(this.companyDetails)
+  }
+  showPassword: boolean = false;
+  showHidePassword(e) {
+    this.showPassword = e.target.checked;
+  }
 }
