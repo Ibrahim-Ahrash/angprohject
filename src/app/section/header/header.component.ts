@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/@services/auth/auth.service';
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faHouse, faExpand } from '@fortawesome/free-solid-svg-icons'
@@ -10,6 +11,9 @@ import { NbMenuItem } from '@nebular/theme';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  constructor(
+    private auth: AuthService
+  ) { }
   usericon = faHouse;
   passicon = faExpand;
 
@@ -19,5 +23,6 @@ export class HeaderComponent {
       link: '/'
 
     }
+
   ]
 }

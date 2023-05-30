@@ -1,5 +1,5 @@
 import { AuthService } from './../@services/auth/auth.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faEye } from '@fortawesome/free-regular-svg-icons'
 import { faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './auth3.component.html',
   styleUrls: ['./auth3.component.scss']
 })
-export class Auth3Component {
+export class Auth3Component implements OnInit {
   constructor(
     private auth: AuthService,
     private rout: Router
@@ -54,5 +54,8 @@ export class Auth3Component {
           }
         }
       })
+  }
+  ngOnInit(): void {
+    localStorage.removeItem('Token');
   }
 }

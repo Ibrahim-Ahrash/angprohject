@@ -12,15 +12,20 @@ export class AuthService {
     private http: HttpClient,
     private config: ConfigServerService
   ) { }
-
+  loggedIn: boolean = false;
 
   LogInToSystem(LogInObject: any): Observable<any> {
-
     return this.http.post(`${this.config.getAPILink()}/api/Users/Login`, LogInObject);
   }
 
   getToken() {
 
     return localStorage.getItem("Token");
+
+  }
+
+  isAuthenticated() {
+    const token = localStorage.getItem('Token');
+    return token !== null;
   }
 }

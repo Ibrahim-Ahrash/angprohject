@@ -5,23 +5,23 @@
 
   </nb-card-header>
   <nb-card-body class="card-filter">
-    <form id="companyDetails" [formGroup]="companyDetails" class="form-control formm" (ngSubmit)="onSubmit()">
+    <form id="companyDetails" [formGroup]="FormData" class="form-control formm" (ngSubmit)="onSubmit()">
       <div class="container">
-        <div class="left">
+        <div class="left" formGroupName="company">
           <div class="form-feilds">
             <label class="label">اسم المالك</label>
             <div class="inpute">
-              <input type="text" class="form-control input" formControlName="Owner" id="owner">
+              <input type="text" class="form-control input" formControlName="CompanyOwner" id="owner">
               <fa-icon [icon]="suit" class="icon fa-fw"></fa-icon>
-              <div *ngIf="companyDetails.get('Owner').touched && companyDetails.get('Owner').invalid"
+              <div *ngIf="companyDetails.get('CompanyOwner').touched && companyDetails.get('CompanyOwner').invalid"
                 class="alert alert-danger errors"> {{
-                companyDetails.get('Owner').errors?.['SelectError']}}</div>
+                companyDetails.get('CompanyOwner').errors?.['SelectError']}}</div>
             </div>
           </div>
           <div class="form-feilds">
             <label class="label">نوع النشاط</label>
             <div class="inpute">
-              <select formControlName="activityType" id="activitie" name="activity" type="text"
+              <select formControlName="ActivityID_FK" id="activitie" name="activity" type="text"
                 class="form-select form-control input">
                 <option value="0" *ngFor="let c of activitie">{{c.Caption}}</option>
               </select>
@@ -32,7 +32,7 @@
           <div class="form-feilds">
             <label class="label"> المنطقة</label>
             <div class="inpute">
-              <select formControlName="subcity" id="subcity" name="subcity" type="text"
+              <select formControlName="SubCityID_FK" id="subcity" name="subcity" type="text"
                 class="form-select form-control input">
                 <option value="0">حدد واحدة</option>
                 <option [value]="a.SubCityID_PK" *ngFor="let a of SubCities">{{a.SubCityName}}</option>
@@ -53,7 +53,8 @@
           <div class="form-feilds">
             <label class="label">النظام</label>
             <div class="inpute ">
-              <select formControlName="system" id="system" name="system" class="form-select form-control input">
+              <select formControlName="SystemModulesID_FK" id="system" name="system"
+                class="form-select form-control input">
                 <option value="0">حدد واحدة</option>
                 <option value="1" *ngFor="let c of system">{{c.SystemName}}</option>
               </select>
@@ -65,24 +66,24 @@
           <div class="form-feilds">
             <label class="label">اسم الشركة</label>
             <div class="inpute">
-              <input formControlName="custmerName" id="custmername" type="text" class="form-control input">
+              <input formControlName="Name" id="custmername" type="text" class="form-control input">
               <fa-icon [icon]="nameIcon" class="icon   fa-fw"></fa-icon>
 
-              <div *ngIf="companyDetails.get('custmerName').touched && companyDetails.get('custmerName').invalid"
+              <div *ngIf="companyDetails.get('Name').touched && companyDetails.get('Name').invalid"
                 class="alert alert-danger errors"> {{
-                companyDetails.get('custmerName').errors?.['SelectError']}}</div>
+                companyDetails.get('Name').errors?.['SelectError']}}</div>
 
             </div>
           </div>
           <div class="form-feilds">
             <label class="label">رقم الهاتف</label>
             <div class="inpute">
-              <input #phone (change)="onSelected(phone.value)" name="number" formControlName="phoneNumber" id="phone"
+              <input #phone (change)="onSelected(phone.value)" name="number" formControlName="PhoneNumber" id="phone"
                 name="phoneNumber" type="text" class="form-control input" placeholder="+218">
               <fa-icon [icon]="phoneIcon" class="icon   fa-fw"></fa-icon>
-              <div *ngIf="companyDetails.get('phoneNumber').touched && companyDetails.get('phoneNumber').invalid"
+              <div *ngIf="companyDetails.get('PhoneNumber').touched && companyDetails.get('PhoneNumber').invalid"
                 class="alert alert-danger errors"> {{
-                companyDetails.get('phoneNumber').errors?.['PhoneError']
+                companyDetails.get('PhoneNumber').errors?.['PhoneError']
                 }}</div>
             </div>
           </div>
@@ -126,25 +127,25 @@
           <div class="form-feilds">
             <label class="label">رقم الهاتف</label>
             <div class="inpute">
-              <input value="{{ selectedTeam }}" formControlName="phoneNumber" id="phone" name="phoneNumber" type="text"
+              <input value="{{ selectedTeam }}" formControlName="Phone" id="phone2" name="phoneNumber" type="text"
                 class="form-control input">
               <fa-icon [icon]="phoneIcon" class="icon fa-fw"></fa-icon>
-              <div *ngIf="companyDetails.get('phoneNumber').touched && companyDetails.get('phoneNumber').invalid"
+              <div *ngIf="companyDetails.get('Phone').touched && companyDetails.get('Phone').invalid"
                 class="alert alert-danger errors"> {{
-                companyDetails.get('phoneNumber').errors?.['PhoneError']
+                companyDetails.get('Phone').errors?.['PhoneError']
                 }}</div>
             </div>
           </div>
           <div class="form-feilds">
             <label class="label">كلمة المرور</label>
             <div class="inpute">
-              <input formControlName="password" [type]="showPassword ? 'text' : 'password'" class="form-control input">
+              <input formControlName="Password" [type]="showPassword ? 'text' : 'password'" class="form-control input">
               <fa-icon [icon]="lock" class="icon   fa-fw"></fa-icon>
               <fa-icon class=" fa-fw iconeye" (click)="showPassword=!showPassword"
                 [icon]="!showPassword ? noteye : eye"></fa-icon>
-              <div *ngIf="companyDetails.get('password').touched && companyDetails.get('password').invalid"
+              <div *ngIf="companyDetails.get('Password').touched && companyDetails.get('Password').invalid"
                 class="alert alert-danger errors"> {{
-                companyDetails.get('password').errors?.['passwordError']
+                companyDetails.get('Password').errors?.['passwordError']
                 }}</div>
             </div>
           </div>
@@ -157,21 +158,20 @@
           <div class="form-feilds">
             <label class="label">اسم صاحب الحساب</label>
             <div class="inpute">
-              <input formControlName="accountOwnerName" id="accountOwnername" type="text" class="form-control input">
+              <input formControlName="FullName" id="accountOwnername" type="text" class="form-control input">
               <fa-icon [icon]="user" class="icon   fa-fw"></fa-icon>
-              <div
-                *ngIf="companyDetails.get('accountOwnerName').touched && companyDetails.get('accountOwnerName').invalid"
+              <div *ngIf="companyDetails.get('FullName').touched && companyDetails.get('FullName').invalid"
                 class="alert alert-danger errors"> {{
-                companyDetails.get('accountOwnerName').errors?.['SelectError']}}</div>
+                companyDetails.get('FullName').errors?.['SelectError']}}</div>
             </div>
           </div>
           <div class="form-feilds">
             <label class="label">اسم المستخدم</label>
             <div class="inpute">
-              <input formControlName="userName" id="username" type="text" class="form-control input">
+              <input formControlName="UserName" id="username" type="text" class="form-control input">
               <fa-icon [icon]="phoneIcon" class="icon   fa-fw"></fa-icon>
               <div class="alert alert-danger errors"
-                *ngIf="companyDetails.get('userName').touched && companyDetails.get('userName').invalid">
+                *ngIf="companyDetails.get('UserName').touched && companyDetails.get('UserName').invalid">
                 هذا الحقل مطلوب
               </div>
             </div>
@@ -179,11 +179,11 @@
           <div class="form-feilds">
             <label class="label">البريد الالكتروني</label>
             <div class="inpute">
-              <input formControlName="email" type="text" class="form-control input">
+              <input formControlName="Email" type="text" class="form-control input">
               <fa-icon [icon]="at" class="icon   fa-fw"></fa-icon>
-              <div *ngIf="companyDetails.get('email').touched && companyDetails.get('email').invalid"
+              <div *ngIf="companyDetails.get('Email').touched && companyDetails.get('Email').invalid"
                 class="alert alert-danger errors">
-                خطأ في البريد الالكتروني يجب ادخال بريد صحيح
+                يجب ادخال بريد صحيح
               </div>
             </div>
           </div>

@@ -12,7 +12,6 @@ import { TokenIntrsiptService } from './@services/token-intrsipt.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NbToastrModule.forRoot(),
     SectionModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
 
   ],
   providers: [
@@ -45,6 +45,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       useClass: TokenIntrsiptService,
       multi: true
     },
+
   ],
   bootstrap: [AppComponent]
 })

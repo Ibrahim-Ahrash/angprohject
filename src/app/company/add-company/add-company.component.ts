@@ -41,7 +41,7 @@ export class AddCompanyComponent implements OnInit {
   lock = faLock;
   user = faUser;
   at = faAt;
-
+  showPassword: boolean = false;
   SearchObject = {
 
     SearchValue: ''
@@ -66,6 +66,34 @@ export class AddCompanyComponent implements OnInit {
     password: new FormControl('', [Validators.required, this.validation.validatePassword]),
 
   })
+
+  FormData = new FormGroup({
+    company: new FormGroup({
+      CompanyID_PK: new FormControl(0),
+      ActivityID_FK: new FormControl('', Validators.required), //un
+      AccountID_FK: new FormControl(),  //un
+      Name: new FormControl('', [Validators.required, this.validation.ValidateSelectInput]),
+      Address: new FormControl('', Validators.required),
+      PhoneNumber: new FormControl('', [Validators.required, this.validation.ValidatePhoneNumber]),
+      CompanyOwner: new FormControl('', [Validators.required, this.validation.ValidateSelectInput]),
+      SubCityID_FK: new FormControl(),
+      RefBranchID_FK: new FormControl(), //un
+      IsMainBranch: new FormControl(true), //un
+      AgentSellerID: new FormControl(null), //un
+      SystemModulesID_FK: new FormControl()
+
+    }),
+    account: new FormGroup({
+      AccountID_PK: new FormControl(0),
+      UserName: new FormControl('', [Validators.required, this.validation.ValidateSelectInput]),
+      Password: new FormControl('', [Validators.required, this.validation.validatePassword]),
+      FullName: new FormControl('', [Validators.required, this.validation.ValidateSelectInput]),
+      Phone: new FormControl('', [Validators.required, this.validation.ValidatePhoneNumber]),
+      Email: new FormControl('', [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")])
+    })
+  });
+
+
   subcityarea = '';
 
   sources: Observable<any>[] = [
@@ -84,8 +112,7 @@ export class AddCompanyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-
+    this.getall()
     this.companyDetails.get('City').valueChanges.subscribe({
       next: (res) => {
 
@@ -132,14 +159,24 @@ export class AddCompanyComponent implements OnInit {
   }
 
   selectedTeam = '';
-  onSelected(value: string): void {
+  onSelected(value: string) {
+    if (value == '') return;
     this.selectedTeam = value;
   }
   onSubmit() {
-    console.log(this.companyDetails)
+    console.log(this.FormData)
   }
-  showPassword: boolean = false;
-  showHidePassword(e) {
-    this.showPassword = e.target.checked;
+  getall() {
+    this.company.getAll(4).subscribe({
+      next: res => {
+        console.log("res are");
+        console.log(res);
+
+
+      }
+    })
+
+
   }
+
 }

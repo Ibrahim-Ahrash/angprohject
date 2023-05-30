@@ -30,7 +30,7 @@ export class CreateServicesComponent {
 
   ServiceForm = new FormGroup({
 
-    ServiceID_FK: new FormControl(0, [Validators.required, this.validation.ValidateSelectInput]),
+    ServiceID_FK: new FormControl(0, Validators.required),
     Note: new FormControl(''),
     RequiredDate: new FormControl(new Date(), Validators.required),
     branchesIDs: new FormControl(),

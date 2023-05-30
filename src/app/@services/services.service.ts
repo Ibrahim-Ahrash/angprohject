@@ -57,6 +57,9 @@ export class ServicesService {
   getBranch(): Observable<any> {
     return this.http.get(`${this.config.getAPILink()}/api/CRMBackOffice/RefBranches/Get`)
   }
+  getAll(CompanyID): Observable<any> {
+    return this.http.get(`${this.config.getAPILink()}/api/CustomersBO/Branches/Get/` + CompanyID);
+  }
 
 }
 

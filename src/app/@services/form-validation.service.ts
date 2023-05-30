@@ -1,22 +1,23 @@
+import { HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-
+import { ServicesService } from './services.service';
 @Injectable({
   providedIn: 'root'
 })
 export class FormValidationService {
 
-  constructor() { }
+  constructor(
+    private custmerName: ServicesService
+  ) { }
 
   ValidateSelectInput(control: AbstractControl): { [key: string]: any } | null {
 
     let selectInput = control.value.toString();
     if (selectInput == "") return { SelectError: 'هذا الحقل اجباري' }
-    // if (!(/^[a-zA-Z\s]+$/.test(selectInput)))
     if ((/^[0-9]+$/.test(selectInput))) return { SelectError: 'يجب الا يحتوى على ارقام' }
     if (selectInput.length <= 3) return { SelectError: 'يجب ان لا تكون اقل من 3 حروف' }
     if (selectInput.length > 50) return { SelectError: 'الاسم طويل جدا' }
-
     return null;
   }
 
@@ -69,4 +70,17 @@ export class FormValidationService {
     return null
   }
 
+  checkIfTaken(selectInput) {
+    this.custmerName.getCustomersBySerach(selectInput)
+      .subscribe({
+        next: res => {
+          console.log(res);
+
+          if (res == selectInput) return { SelectError: 'هذا الاسم محجوز' }
+
+          return null
+        }
+      })
+
+  }
 }
