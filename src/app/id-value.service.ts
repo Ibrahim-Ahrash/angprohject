@@ -5,15 +5,11 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class IdValueService {
-  private idSource = new BehaviorSubject<number>(0);
-  currentId = this.idSource.asObservable();
-  chnga: boolean = false
-
-  setId(id: number) {
-    this.idSource.next(id);
+  numero = 0;
+  setNumero(value){
+    this.numero = value
   }
-  callOr() {
-
+  getNumero(){
+    return this.numero
   }
-  constructor() { }
 }

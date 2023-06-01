@@ -51,7 +51,6 @@ export class CompanyListComponent implements OnInit {
     this.company.getCustomersBySerach(this.searchvalue)
       .subscribe({
         next: (res) => {
-          console.log(res)
           this.rowData = res.JsonArray
         }
 
@@ -150,15 +149,13 @@ export class CompanyListComponent implements OnInit {
   ShowCustomerData(CustomerData) {
 
 
-    this.idval.setId(CustomerData.data.CompanyID_PK);
-    console.log(CustomerData.data.CompanyID_PK);
+    this.idval.setNumero(CustomerData.data.CompanyID_PK);
+    console.log('the id is '+CustomerData.data.CompanyID_PK);
 
     this.company.getCompanybtId(CustomerData.data.CompanyID_PK)
       .subscribe({
         next: res => {
           console.log('res area');
-          console.log(res);
-
 
         }
       })
@@ -168,7 +165,6 @@ export class CompanyListComponent implements OnInit {
   ngOnInit(): void {
     this.company.forTests().subscribe({
       next: res => {
-        console.log(res);
         this.rowData = res.JsonArray
 
       }

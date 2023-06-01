@@ -20,14 +20,10 @@ export class AddCompanyComponent implements OnInit {
     private getcom: CompanyserviceService,
     private company: ServicesService,
     private validation: FormValidationService,
-    private service: ServicesService,
     private idval: IdValueService
   ) {
-    this.idval.currentId.subscribe(id => {
-      this.CompanyId = id;
-    });
-    console.log(this.CompanyId);
-
+    
+    
   }
 
   eye = faEye;
@@ -63,6 +59,18 @@ export class AddCompanyComponent implements OnInit {
 
   SubCities = [];
 
+  getEdiab(){
+    this.company.getCompanybtId(this.CompanyId)
+    .subscribe({
+      next: res => { this.editable = res.JsonArray }
+       })
+       this.company.getCompanyDeatails(this.CompanyId)
+       .subscribe({
+        next : res => { this.editable2 = res.JsonObject }
+       })
+    }
+
+
   newCompany: any;
 
   companyDetails = new FormGroup({
@@ -96,8 +104,8 @@ export class AddCompanyComponent implements OnInit {
     this.getcom.getActivities(),
     this.getcom.getSystemModuls(),
     this.company.getBranch(),
-    this.company.getCompanybtId(this.CompanyId),
-    this.company.getCompanyDeatails(this.CompanyId)
+    
+    this.company.getCompanyDeatails(14007)
   ];
 
   selectedCity = '';
@@ -108,7 +116,8 @@ export class AddCompanyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.CompanyId);
+    this.CompanyId = this.idval.getNumero()
+    this.getEdiab()
 
     forkJoin(this.sources).subscribe({
       next: (res) => {
@@ -116,14 +125,13 @@ export class AddCompanyComponent implements OnInit {
         this.activitie = res[1].JsonArray;
         this.system = res[2].JsonArray.slice(1);
         this.branches = res[3].JsonArray;
+     
         console.log(res);
-        console.log(this.editable);
-
-        this.editable2 = res[5].JsonArray;
-
+        
+        
+        
       }
     })
-    console.log(this.editable);
 
   }
   getBrah() {
