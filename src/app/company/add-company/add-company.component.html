@@ -5,17 +5,18 @@
 
   </nb-card-header>
   <nb-card-body class="card-filter">
-    <form id="companyDetails" [formGroup]="FormData" class="form-control formm" (ngSubmit)="onSubmit()">
-      <div class="container">
-        <div class="left" formGroupName="company">
+    <form id="companydetails" [formGroup]="companyDetails" class="form-control formm" (ngSubmit)="onSubmit()">
+      <div class="container" formGroupName="company">
+        <div class="left">
           <div class="form-feilds">
             <label class="label">اسم المالك</label>
             <div class="inpute">
               <input type="text" class="form-control input" formControlName="CompanyOwner" id="owner">
               <fa-icon [icon]="suit" class="icon fa-fw"></fa-icon>
-              <div *ngIf="companyDetails.get('CompanyOwner').touched && companyDetails.get('CompanyOwner').invalid"
-                class="alert alert-danger errors"> {{
-                companyDetails.get('CompanyOwner').errors?.['SelectError']}}</div>
+              <div *ngIf="Company.get('CompanyOwner').touched && Company.get('CompanyOwner').invalid"
+                class="alert alert-danger errors">
+                {{
+                Company.get('CompanyOwner').errors?.['SelectError']}}</div>
             </div>
           </div>
           <div class="form-feilds">
@@ -26,6 +27,10 @@
                 <option value="0" *ngFor="let c of activitie">{{c.Caption}}</option>
               </select>
               <fa-icon [icon]="priductIcon" class="icon   fa-fw"></fa-icon>
+              <div *ngIf="Company.get('ActivityID_FK').touched && Company.get('ActivityID_FK').invalid"
+                class="alert alert-danger errors">
+                <small>هذا الحقل مطلوب</small>
+              </div>
             </div>
           </div>
 
@@ -34,20 +39,28 @@
             <div class="inpute">
               <select formControlName="SubCityID_FK" id="subcity" name="subcity" type="text"
                 class="form-select form-control input">
-                <option value="0">حدد واحدة</option>
                 <option [value]="a.SubCityID_PK" *ngFor="let a of SubCities">{{a.SubCityName}}</option>
               </select>
               <fa-icon [icon]="areaicon" class="icon   fa-fw"></fa-icon>
+              <div *ngIf="Company.get('SubCityID_FK').touched && Company.get('SubCityID_FK').invalid"
+                class="alert alert-danger errors">
+                <small>هذا الحقل مطلوب</small>
+              </div>
             </div>
           </div>
           <div class="form-feilds">
             <label class="label">الفرع</label>
             <div class="inpute">
-              <select formControlName="branch" type="text" class="form-select form-control input" id="branch">
+              <select formControlName="RefBranchID_FK" type="text" class="form-select form-control input">
                 <option value="0">حدد واحدة</option>
-                <option value="1" *ngFor="let c of branches">{{c.BranchName}}</option>
+                <option value="1" *ngFor="let c of branches" [value]="c.BranchID_PK">{{c.BranchName}}</option>
               </select>
               <fa-icon [icon]="nameIcon" class="icon   fa-fw "></fa-icon>
+              <div *ngIf="Company.get('RefBranchID_FK').touched && Company.get('RefBranchID_FK').invalid"
+                class="alert alert-danger errors">
+                <small>يجب تحديد واحدة</small>
+
+              </div>
             </div>
           </div>
           <div class="form-feilds">
@@ -56,9 +69,13 @@
               <select formControlName="SystemModulesID_FK" id="system" name="system"
                 class="form-select form-control input">
                 <option value="0">حدد واحدة</option>
-                <option value="1" *ngFor="let c of system">{{c.SystemName}}</option>
+                <option *ngFor="let c of system" [value]="c.SystemModuleID_PK">{{c.SystemName}}</option>
               </select>
               <fa-icon [icon]="arrow" class="icon fa-fw"></fa-icon>
+              <div *ngIf="Company.get('SystemModulesID_FK').touched && Company.get('SystemModulesID_FK').invalid"
+                class="alert alert-danger errors">
+                <small>هذا الحقل مطلوب</small>
+              </div>
             </div>
           </div>
         </div>
@@ -66,31 +83,31 @@
           <div class="form-feilds">
             <label class="label">اسم الشركة</label>
             <div class="inpute">
-              <input formControlName="Name" id="custmername" type="text" class="form-control input">
+              <input formControlName="Name" id="Name" type="text" class="form-control input">
               <fa-icon [icon]="nameIcon" class="icon   fa-fw"></fa-icon>
 
-              <div *ngIf="companyDetails.get('Name').touched && companyDetails.get('Name').invalid"
-                class="alert alert-danger errors"> {{
-                companyDetails.get('Name').errors?.['SelectError']}}</div>
+              <div *ngIf="Company.get('Name').touched && Company.get('Name').invalid" class="alert alert-danger errors">
+                {{
+                Company.get('Name').errors?.['SelectError']}}</div>
 
             </div>
           </div>
           <div class="form-feilds">
             <label class="label">رقم الهاتف</label>
             <div class="inpute">
-              <input #phone (change)="onSelected(phone.value)" name="number" formControlName="PhoneNumber" id="phone"
-                name="phoneNumber" type="text" class="form-control input" placeholder="+218">
+              <input #phone (change)="onSelected(phone.value)" name="number" formControlName="PhoneNumber" type="text"
+                class="form-control input" placeholder="+218">
               <fa-icon [icon]="phoneIcon" class="icon   fa-fw"></fa-icon>
-              <div *ngIf="companyDetails.get('PhoneNumber').touched && companyDetails.get('PhoneNumber').invalid"
+              <div *ngIf="Company.get('PhoneNumber').touched && Company.get('PhoneNumber').invalid"
                 class="alert alert-danger errors"> {{
-                companyDetails.get('PhoneNumber').errors?.['PhoneError']
+                Company.get('PhoneNumber').errors?.['PhoneError']
                 }}</div>
             </div>
           </div>
           <div class="form-feilds">
             <label class="label">المدينة</label>
             <div class="inpute">
-              <select #teams name="city" formControlName="City" id="city" type="text"
+              <select #teams name="City" (change)="seletCity($event)" id="city" type="text"
                 class="form-select form-control input">
                 <option *ngFor="let v of cities" [value]="v.CityID_PK">{{v.Name}}</option>
               </select>
@@ -102,14 +119,14 @@
             <div class="inpute">
               <input formControlName="Address" id="address" type="text" class="form-control input">
               <fa-icon [icon]="addressIcon" class="icon   fa-fw"></fa-icon>
-              <div *ngIf="companyDetails.get('Address').touched && companyDetails.get('Address').invalid"
+              <div *ngIf="Company.get('Address').touched && Company.get('Address').invalid"
                 class="alert alert-danger errors">يرجى ادخال العنوان</div>
             </div>
           </div>
           <div class="form-feilds">
             <label class="label">المندوب</label>
             <div class="inpute">
-              <select formControlName="Man" id="Man" type="text" class="form-select form-control input">
+              <select id="Man" type="text" class="form-select form-control input">
                 <option value="0">بلا تحديد</option>
               </select>
               <fa-icon [icon]="areaicon" class="icon   fa-fw"></fa-icon>
@@ -121,18 +138,17 @@
         <div class="bord"></div>
         <p>بيانات الحساب</p>
       </div>
-      <div class="container">
+      <div class="container" formGroupName="account">
 
         <div class="left">
           <div class="form-feilds">
             <label class="label">رقم الهاتف</label>
             <div class="inpute">
-              <input value="{{ selectedTeam }}" formControlName="Phone" id="phone2" name="phoneNumber" type="text"
-                class="form-control input">
+              <input value="{{ selectedTeam }}" formControlName="Phone" type="text" class="form-control input">
               <fa-icon [icon]="phoneIcon" class="icon fa-fw"></fa-icon>
-              <div *ngIf="companyDetails.get('Phone').touched && companyDetails.get('Phone').invalid"
+              <div *ngIf="Account.get('Phone').touched && Account.get('Phone').invalid"
                 class="alert alert-danger errors"> {{
-                companyDetails.get('Phone').errors?.['PhoneError']
+                Account.get('Phone').errors?.['PhoneError']
                 }}</div>
             </div>
           </div>
@@ -143,15 +159,16 @@
               <fa-icon [icon]="lock" class="icon   fa-fw"></fa-icon>
               <fa-icon class=" fa-fw iconeye" (click)="showPassword=!showPassword"
                 [icon]="!showPassword ? noteye : eye"></fa-icon>
-              <div *ngIf="companyDetails.get('Password').touched && companyDetails.get('Password').invalid"
+              <div *ngIf="Account.get('Password').touched && Account.get('Password').invalid"
                 class="alert alert-danger errors"> {{
-                companyDetails.get('Password').errors?.['passwordError']
+                Account.get('Password').errors?.['passwordError']
                 }}</div>
             </div>
           </div>
 
           <div class="form-feilds">
-            <button type="submit" form="companyDetails" class="btn btn-outline-secondary">حفظ</button>
+            <button type="submit" form="companyDetails" (click)="onSubmit()"
+              class="btn btn-outline-secondary">حفظ</button>
           </div>
         </div>
         <div class="right">
@@ -160,9 +177,9 @@
             <div class="inpute">
               <input formControlName="FullName" id="accountOwnername" type="text" class="form-control input">
               <fa-icon [icon]="user" class="icon   fa-fw"></fa-icon>
-              <div *ngIf="companyDetails.get('FullName').touched && companyDetails.get('FullName').invalid"
+              <div *ngIf="Account.get('FullName').touched && Account.get('FullName').invalid"
                 class="alert alert-danger errors"> {{
-                companyDetails.get('FullName').errors?.['SelectError']}}</div>
+                Account.get('FullName').errors?.['SelectError']}}</div>
             </div>
           </div>
           <div class="form-feilds">
@@ -171,7 +188,7 @@
               <input formControlName="UserName" id="username" type="text" class="form-control input">
               <fa-icon [icon]="phoneIcon" class="icon   fa-fw"></fa-icon>
               <div class="alert alert-danger errors"
-                *ngIf="companyDetails.get('UserName').touched && companyDetails.get('UserName').invalid">
+                *ngIf="Account.get('UserName').touched && Account.get('UserName').invalid">
                 هذا الحقل مطلوب
               </div>
             </div>
@@ -181,7 +198,7 @@
             <div class="inpute">
               <input formControlName="Email" type="text" class="form-control input">
               <fa-icon [icon]="at" class="icon   fa-fw"></fa-icon>
-              <div *ngIf="companyDetails.get('Email').touched && companyDetails.get('Email').invalid"
+              <div *ngIf="Account.get('Email').touched && Account.get('Email').invalid"
                 class="alert alert-danger errors">
                 يجب ادخال بريد صحيح
               </div>

@@ -14,7 +14,7 @@ export class FormValidationService {
   ValidateSelectInput(control: AbstractControl): { [key: string]: any } | null {
 
     let selectInput = control.value.toString();
-    if (selectInput == "") return { SelectError: 'هذا الحقل اجباري' }
+    if (selectInput == "") return { SelectError: 'هذا الحقل مطلوب' }
     if ((/^[0-9]+$/.test(selectInput))) return { SelectError: 'يجب الا يحتوى على ارقام' }
     if (selectInput.length <= 3) return { SelectError: 'يجب ان لا تكون اقل من 3 حروف' }
     if (selectInput.length > 50) return { SelectError: 'الاسم طويل جدا' }
@@ -82,5 +82,10 @@ export class FormValidationService {
         }
       })
 
+  }
+  alidateSelectNumber(control: AbstractControl): { [key: string]: any } | null {
+    let selected = control.value.toString();
+    if (selected == '0') return { listError: 'يجب تحديد واحدة' }
+    return null;
   }
 }

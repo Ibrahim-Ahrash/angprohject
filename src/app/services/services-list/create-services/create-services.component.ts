@@ -44,6 +44,8 @@ export class CreateServicesComponent {
     const controls = this.ServiceForm.controls;
 
     for (const name in controls) {
+      console.log(controls[name]);
+
       if (controls[name].invalid) {
 
         controls[name].markAsTouched({ onlySelf: true });
@@ -62,11 +64,11 @@ export class CreateServicesComponent {
       return;
     }
 
-    // if (this.ServiceForm.invalid) {
+    if (this.ServiceForm.invalid) {
 
-    //   this.MarkInvalidControls()
-    //   return;
-    // }
+      this.MarkInvalidControls()
+      return;
+    }
 
 
     var ServiceObject = this.ServiceForm.getRawValue();

@@ -38,7 +38,11 @@ export class ServicesService {
   }
   getCustomersBySerach(SearchObject): Observable<any> {
 
-    return this.http.post(`${this.config.getAPILink()}/api/CustomersBO/Branches/SearchValue`, SearchObject)
+    // return this.http.post(`${this.config.getAPILink()}/api/CustomersBO/Branches/SearchValue`, SearchObject)
+    return this.http.post(`${this.config.getAPILink()}/api/CustomersBO/Companies/SearchValue`, SearchObject)
+    // POST api/CustomersBO/Companies/SearchValue
+    // GET api/CustomersBO/Branches/Get/{CompanyID}
+
   }
 
   DeleteCustomers(CompanyID_PK): Observable<any> {
@@ -60,6 +64,19 @@ export class ServicesService {
   getAll(CompanyID): Observable<any> {
     return this.http.get(`${this.config.getAPILink()}/api/CustomersBO/Branches/Get/` + CompanyID);
   }
+  addCompnay(CompanyData): Observable<any> {
+    return this.http.post(this.config.getAPILink() + '/api/CustomersBO/Companies/Add', CompanyData)
+  }
 
+  getCompanybtId(CompanyID): Observable<any> {
+    return this.http.get(this.config.getAPILink() + '/api/CustomersBO/Branches/Get/' + CompanyID)
+  }
+  getCompanyDeatails(CompanyPk): Observable<any> {
+    return this.http.get(this.config.getAPILink() + '/api/CustomersBO/Companies/Get/' + CompanyPk)
+  }
+
+  forTests(): Observable<any> {
+    return this.http.get(this.config.getAPILink() + '/api/CustomersBO/Companies/Get')
+  }
 }
 

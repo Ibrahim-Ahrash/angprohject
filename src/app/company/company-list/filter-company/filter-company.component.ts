@@ -5,6 +5,7 @@ import { CompanyserviceService } from 'src/app/@services/companyservice.service'
 import { Observable, catchError, forkJoin, throwError } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NbToastrService, NbDialogRef } from '@nebular/theme';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-filter-company',
   templateUrl: './filter-company.component.html',
@@ -12,11 +13,9 @@ import { NbToastrService, NbDialogRef } from '@nebular/theme';
 })
 export class FilterCompanyComponent implements OnInit {
   constructor(
-    private http: HttpClient,
     private getcom: CompanyserviceService,
-    private toaster: NbToastrService,
     private dailogref: NbDialogRef<any>,
-    private company: ServicesService
+    private company: ServicesService,
   ) { }
 
   cities = []
@@ -77,4 +76,6 @@ export class FilterCompanyComponent implements OnInit {
       }
     })
   }
+
+
 }

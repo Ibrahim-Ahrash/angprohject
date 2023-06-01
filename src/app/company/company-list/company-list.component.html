@@ -29,7 +29,8 @@
     <ag-grid-angular #agGrid id="agGrid" class="ag-theme-alpine text-end customer-list-grid" [rowSelection]="'single'"
       style="height: 100%; width: 100%; " [rowData]="rowData" [overlayNoRowsTemplate]="'لا يوجد خدمات لعرضها'"
       [columnDefs]="colDef" [rowSelection]="'single'" [headerHeight]="35" [rowHeight]="35"
-      [defaultColDef]="defaultColDef" (gridReady)="onGridReady($event)"></ag-grid-angular>
+      [defaultColDef]="defaultColDef" (rowDoubleClicked)="ShowCustomerData($event)"
+      (gridReady)="onGridReady($event)"></ag-grid-angular>
 
 
   </nb-card-body>
