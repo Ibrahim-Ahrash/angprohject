@@ -136,29 +136,12 @@ export class CompanyListComponent implements OnInit {
     })
   }
 
-  addCompnay() {
-    //   // this.routess.navigateByUrl('/home/company/add-company')
-    //   console.log("Clicked")
-    //   this.company.getUser()
-    //     .subscribe({
-    //       next: (res) => {
-    //         console.log(res.JsonArray)
-    //       }
-    //     })
-  }
+
   ShowCustomerData(CustomerData) {
 
-
     this.idval.setNumero(CustomerData.data.CompanyID_PK);
-    console.log('the id is '+CustomerData.data.CompanyID_PK);
-
-    this.company.getCompanybtId(CustomerData.data.CompanyID_PK)
-      .subscribe({
-        next: res => {
-          console.log('res area');
-
-        }
-      })
+    console.log('the id is ' + CustomerData.data.CompanyID_PK);
+    this.idval.usedArray()
     this.routess.navigateByUrl('/home/company/add-company')
   }
 

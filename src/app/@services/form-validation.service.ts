@@ -12,21 +12,26 @@ export class FormValidationService {
   ) { }
 
   ValidateSelectInput(control: AbstractControl): { [key: string]: any } | null {
-
-    let selectInput = control.value.toString();
+    let selectInput = control.value;
+    if (selectInput) {
+      selectInput = selectInput.toString();
+    }
+    selectInput = selectInput || '';
     if (selectInput == "") return { SelectError: 'هذا الحقل مطلوب' }
     if ((/^[0-9]+$/.test(selectInput))) return { SelectError: 'يجب الا يحتوى على ارقام' }
     if (selectInput.length <= 3) return { SelectError: 'يجب ان لا تكون اقل من 3 حروف' }
     if (selectInput.length > 50) return { SelectError: 'الاسم طويل جدا' }
+
     return null;
+
   }
 
   ValidatePhoneNumber(control: AbstractControl): { [key: string]: any } | null {
 
 
-    let PhoneNumber = control.value.toString();
+    let PhoneNumber = control.value;
 
-    if (PhoneNumber == "") {
+    if (PhoneNumber == '') {
       return {
         PhoneError: 'يجب الا يحتوى رقم الهاتف على فراغ'
       }
@@ -63,7 +68,11 @@ export class FormValidationService {
     return null;
   }
   validatePassword(control: AbstractControl): { [key: string]: any } | null {
-    let Password = control.value.toString();
+    let Password = control.value;
+    if (Password) {
+      Password = Password.toString();
+    }
+    Password = Password || '';
     if (Password == '') return { passwordError: 'يجب ادخال كلمة السر' }
     if (Password.length <= 7) return { passwordError: 'كلمة المرور يجب ان تكون اطول من 7 حروف' }
     if ((/^[0-9]+$/.test(Password))) return { passwordError: 'يجب ان تحتوي كلمة المرور على حرف' }
@@ -84,8 +93,8 @@ export class FormValidationService {
 
   }
   alidateSelectNumber(control: AbstractControl): { [key: string]: any } | null {
-    let selected = control.value.toString();
-    if (selected == '0') return { listError: 'يجب تحديد واحدة' }
+    let selected = control.value;
+    if (selected == 0) return { listError: 'يجب تحديد واحدة' }
     return null;
   }
 }

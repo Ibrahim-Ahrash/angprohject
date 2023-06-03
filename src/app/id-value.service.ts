@@ -6,10 +6,20 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class IdValueService {
   numero = 0;
-  setNumero(value){
+  editAllow = false;
+  setNumero(value) {
     this.numero = value
   }
-  getNumero(){
+  getNumero() {
     return this.numero
+  }
+  usedArray() {
+    this.editAllow = true
+  }
+  noUse() {
+    this.editAllow = false
+  }
+  isTrue() {
+    return this.editAllow
   }
 }

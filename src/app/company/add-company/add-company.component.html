@@ -22,9 +22,9 @@
           <div class="form-feilds">
             <label class="label">نوع النشاط</label>
             <div class="inpute">
-              <select formControlName="ActivityID_FK" id="activitie" name="activity" type="text"
-                class="form-select form-control input">
-                <option value="0" *ngFor="let c of activitie">{{c.Caption}}</option>
+              <select formControlName="ActivityID_FK" type="text" class="form-select form-control input">
+                <option value="0">غير محدد</option>
+                <option *ngFor="let c of activitie" [value]="c.ActivityID_PK">{{c.Caption}}</option>
               </select>
               <fa-icon [icon]="priductIcon" class="icon   fa-fw"></fa-icon>
               <div *ngIf="Company.get('ActivityID_FK').touched && Company.get('ActivityID_FK').invalid"
@@ -68,7 +68,8 @@
             <div class="inpute ">
               <select formControlName="SystemModulesID_FK" id="system" name="system"
                 class="form-select form-control input">
-                <option value="0">حدد واحدة</option>
+                <option *ngIf="!editSave" value="0">حدد واحدة</option>
+                <option *ngIf="editSave">{{editable.SystemName}}</option>
                 <option *ngFor="let c of system" [value]="c.SystemModuleID_PK">{{c.SystemName}}</option>
               </select>
               <fa-icon [icon]="arrow" class="icon fa-fw"></fa-icon>
@@ -109,6 +110,7 @@
             <div class="inpute">
               <select #teams name="City" (change)="seletCity($event)" id="city" type="text"
                 class="form-select form-control input">
+                <option *ngIf="editSave">{{cities[0].Name}}</option>
                 <option *ngFor="let v of cities" [value]="v.CityID_PK">{{v.Name}}</option>
               </select>
               <fa-icon [icon]="cityIcon" class="icon fa-fw"></fa-icon>
@@ -155,7 +157,8 @@
           <div class="form-feilds">
             <label class="label">كلمة المرور</label>
             <div class="inpute">
-              <input formControlName="Password" [type]="showPassword ? 'text' : 'password'" class="form-control input">
+              <input formControlName="Password" [type]="showPassword ? 'text' : 'password'" class="form-control input"
+                autocomplete="off">
               <fa-icon [icon]="lock" class="icon   fa-fw"></fa-icon>
               <fa-icon class=" fa-fw iconeye" (click)="showPassword=!showPassword"
                 [icon]="!showPassword ? noteye : eye"></fa-icon>
@@ -166,9 +169,11 @@
             </div>
           </div>
 
-          <div class="form-feilds">
-            <button type="submit" form="companyDetails" (click)="onSubmit()"
-              class="btn btn-outline-secondary">حفظ</button>
+          <div class="form-feilds" style="width: 200px;justify-content: space-between;">
+            <button type="submit" form="companyDetails" (click)="onSubmit()" class="btn btn-outline-secondary"
+              [disabled]="editSave">حفظ</button>
+            <button type="submit" form="companyDetails" class="btn btn-outline-secondary" (click)="updataCompany()"
+              [disabled]="!editSave">تعديل</button>
           </div>
         </div>
         <div class="right">

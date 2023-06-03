@@ -78,5 +78,11 @@ export class ServicesService {
   forTests(): Observable<any> {
     return this.http.get(this.config.getAPILink() + '/api/CustomersBO/Companies/Get')
   }
+  getAcoount(id): Observable<any> {
+    return this.http.get(this.config.getAPILink() + '/api/CustomersBO/Accounts/Get/' + id)
+  }
+  updateCompany(CompanyData): Observable<any> {
+    return this.http.patch(this.config.getAPILink() + '/api/CustomersBO/Company/Update', CompanyData)
+  }
 }
 
